@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: 'Founders Grotesk';
+        src: url('/FoundersGrotesk-Medium.woff2') format('woff2'),
+            url('/FoundersGrotesk-Medium.woff') format('woff');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'Founders Grotesk';
+        src: url('/FoundersGrotesk-RegularItalic.woff2') format('woff2'),
+            url('/FoundersGrotesk-RegularItalic.woff') format('woff');
+        font-weight: normal;
+        font-style: italic;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'Founders Grotesk Text';
+        src: url('/FoundersGroteskText-Light.woff2') format('woff2'),
+            url('/FoundersGroteskText-Light.woff') format('woff');
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    html {
+        -webkit-tap-highlight-color: transparent;
+        @apply text-ben-black;
+    }
+
+    .cms-intro-section {
+        @apply mt-8 font-fgt font-light text-lg w-full max-w-sm px-10 text-center md:text-left leading-tight;
+        p {
+            @apply mt-3 first:mt-0;
+        }
+        strong {
+            @apply font-fg font-medium;
+        }
+        em {
+            @apply font-fg font-normal italic;
+        }
+    }
+
+    .cms-project-intro-section {
+        @apply font-fgt text-lg text-center leading-tight;
+        strong {
+            @apply font-fg font-medium;
+        }
+        em {
+            @apply font-fg font-normal italic;
+        }
+    }
+
+    .cms-project {
+        @apply font-fgt text-lg leading-tight;
+        p {
+            @apply mt-3 first-of-type:mt-6 md:first-of-type:mt-0;
+        }
+        a {
+            @apply font-fg text-ben-black;
+        }
+        em {
+            @apply font-fg font-normal italic;
+        }
+    }
+    .cms-privacy-page {
+        @apply mx-auto p-4 max-w-sm text-center mt-16;
+
+        h1 { 
+            @apply font-fg text-2xl font-medium text-left ml-2 -mb-12;
+        }
+        h2 {
+            @apply font-fg font-medium text-lg text-left ml-2 mt-20;
+        }
+        h3 {
+            @apply font-fg font-medium text-sm text-left ml-2 mt-2;
+        }
+
+        p {
+            @apply text-left font-fgt text-sm mt-2 mb-6;
+        }
+
+        ul {
+            @apply m-0 p-0 table mt-4 font-fgt text-sm text-left mb-6;  
+        }
+
+        li {
+            @apply list-none table-row  before:table-cell before:text-right before:pr-2 before:pl-1 before:content-['•'] ;   
+        } 
+        div {
+            @apply text-left font-fg font-medium text-sm pl-4 border-l-[1px] border-ben-black
+        }
+    }
+    .video-container {
+        video {
+            @apply scale-[1.01];
+        }
+    }
+}
