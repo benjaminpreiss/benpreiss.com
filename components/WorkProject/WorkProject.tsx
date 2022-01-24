@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import TextLink from '../TextLink/TextLink'
 import parse, {Element, domToReact, HTMLReactParserOptions} from 'html-react-parser';
 import {useWindowContext} from '../../context/windowContext'
+import { browserName, isTablet } from 'react-device-detect';
 
 type frameWorkButtonType = "figma" | "adobe-xd" | "adobe-illustrator" | "nextjs" | "formik" | "react-query" | "docker" | "tailwindcss" | "xstate" | "swiperjs" | "javascript" | "webpack" | "paperjs" | "sass" 
 
@@ -29,12 +30,14 @@ type WorkProjectProps = {
     }[]
     videoUrl: string
     videoUrlMobile: string
+    videoUrlFb: string
+    videoUrlMobileFb: string
     color: string
     projectEntry: projectEntry
 }
 
 
-export default function WorkProject({frameWorkButtons, videoUrlMobile, color, projectEntry, videoUrl}: WorkProjectProps) {
+export default function WorkProject({frameWorkButtons, videoUrlMobile, color, projectEntry, videoUrl, videoUrlFb, videoUrlMobileFb  }: WorkProjectProps) {
     const dim = useWindowContext()
     const parseOptions: HTMLReactParserOptions = {
         replace: domNode => {
@@ -95,8 +98,8 @@ export default function WorkProject({frameWorkButtons, videoUrlMobile, color, pr
             </div>
             <div style={{ backgroundColor: color}} className={`mt-8 w-full py-14`}>
                 <div className='flex items-center w-full max-w-sm mx-auto md:max-w-screen-xl' ref={targetRef}>
-                    <ReactPlayer url={videoUrlMobile} muted playing={isInView} playsinline loop width={dim.width > 768 ? "15%" : "65%"} height="100%" className="mx-auto shadow-video-sm overflow-hidden video-container" />
-                    {dim.width > 768 ? <ReactPlayer url={videoUrl} muted playing={isInView} playsinline loop width="65%" height="100%" className="mx-auto shadow-video-sm overflow-hidden video-container" /> : null}
+                    <ReactPlayer url={(browserName === "Safari" && isTablet) ? videoUrlMobileFb : videoUrlMobile} muted playing={isInView} playsinline loop width={dim.width > 768 ? "15%" : "65%"} height="100%" className="mx-auto shadow-video-sm overflow-hidden video-container" />
+                    {dim.width > 768 ? <ReactPlayer url={(browserName === "Safari" && isTablet) ? videoUrlFb : videoUrl} muted playing={isInView} playsinline loop width="65%" height="100%" className="mx-auto shadow-video-sm overflow-hidden video-container" /> : null}
                 </div>
             </div>
         </div>
