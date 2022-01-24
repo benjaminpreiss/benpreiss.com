@@ -95,8 +95,8 @@ export default function WorkProject({frameWorkButtons, videoUrlMobile, color, pr
             </div>
             <div style={{ backgroundColor: color}} className={`mt-8 w-full py-14`}>
                 <div className='flex items-center w-full max-w-sm mx-auto md:max-w-screen-xl' ref={targetRef}>
-                    <ReactPlayer url={videoUrlMobile} muted playing={isInView} loop width={dim.width > 768 ? "15%" : "65%"} height="100%" className="mx-auto shadow-video-sm overflow-hidden video-container" />
-                    {dim.width > 768 ? <ReactPlayer url={videoUrl} muted playing={isInView} loop width="65%" height="100%" className="mx-auto shadow-video-sm overflow-hidden video-container" /> : null}
+                    <ReactPlayer url={videoUrlMobile} muted playing={isInView} playsinline loop width={dim.width > 768 ? "15%" : "65%"} height="100%" className="mx-auto shadow-video-sm overflow-hidden video-container" />
+                    {dim.width > 768 ? <ReactPlayer url={videoUrl} muted playing={isInView} playsinline loop width="65%" height="100%" className="mx-auto shadow-video-sm overflow-hidden video-container" /> : null}
                 </div>
             </div>
         </div>
