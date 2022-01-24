@@ -92,8 +92,8 @@ const projects: Record<string,projectEntry[]> = {
                 target: "_blank",
                 text: "juice cleanse app"
             },
-            videoUrl: "/kale-and-me-desktop.webm",
-            videoUrlMobile: "/kale-and-me-mobile.webm",
+            videoUrl: "/kale-and-me-desktop.mp4",
+            videoUrlMobile: "/kale-and-me-mobile.mp4",
             colorClass: "#869B86",
             buttons: ["adobe-xd", "adobe-illustrator", "nextjs", "formik", "react-query", "docker", "tailwindcss", "swiperjs"],
             text: `
@@ -115,8 +115,8 @@ const projects: Record<string,projectEntry[]> = {
                 target: "_blank",
                 text: "website"
             },
-            videoUrl: "/churchill-desktop.webm",
-            videoUrlMobile: "/churchill-mobile.webm",
+            videoUrl: "/churchill-desktop.mp4",
+            videoUrlMobile: "/churchill-mobile.mp4",
             colorClass: "#efefef",
             buttons: ["adobe-illustrator", "javascript", "webpack", "paperjs", "sass"],
             text: `
@@ -135,8 +135,8 @@ const projects: Record<string,projectEntry[]> = {
                 target: "_blank",
                 text: "compare app"
             },
-            videoUrl: "/kale-and-me-desktop.webm",
-            videoUrlMobile: "/kale-and-me-mobile.webm",
+            videoUrl: "/kale-and-me-desktop.mp4",
+            videoUrlMobile: "/kale-and-me-mobile.mp4",
             colorClass: "#E6EAEE",
             buttons: ["figma", "adobe-xd", "adobe-illustrator", "nextjs", "formik", "react-query", "docker", "tailwindcss", "xstate", "swiperjs"],
             text: `
@@ -158,8 +158,8 @@ const projects: Record<string,projectEntry[]> = {
                 target: "_blank",
                 text: "website"
             },
-            videoUrl: "/susanne-preiss-desktop.webm",
-            videoUrlMobile: "/susanne-preiss-mobile.webm",
+            videoUrl: "/susanne-preiss-desktop.mp4",
+            videoUrlMobile: "/susanne-preiss-mobile.mp4",
             colorClass: "#EFEAE3",
             buttons: ["adobe-illustrator", "javascript", "webpack", "sass"],
             text: `
@@ -180,8 +180,8 @@ const projects: Record<string,projectEntry[]> = {
                 target: "_blank",
                 text: "Fastenapp"
             },
-            videoUrl: "/kale-and-me-desktop.webm",
-            videoUrlMobile: "/kale-and-me-mobile.webm",
+            videoUrl: "/kale-and-me-desktop.mp4",
+            videoUrlMobile: "/kale-and-me-mobile.mp4",
             colorClass: "bg-ben-green-1",
             buttons: ["adobe-xd", "adobe-illustrator", "nextjs", "formik", "react-query", "docker", "tailwindcss", "swiperjs"],
             text: `
@@ -203,8 +203,8 @@ const projects: Record<string,projectEntry[]> = {
                 target: "_blank",
                 text: "Website"
             },
-            videoUrl: "/churchill-desktop.webm",
-            videoUrlMobile: "/churchill-mobile.webm",
+            videoUrl: "/churchill-desktop.mp4",
+            videoUrlMobile: "/churchill-mobile.mp4",
             colorClass: "bg-ben-gray-3",
             buttons: ["adobe-illustrator", "javascript", "webpack", "paperjs", "sass"],
             text: `
@@ -223,8 +223,8 @@ const projects: Record<string,projectEntry[]> = {
                 target: "_blank",
                 text: "Vergleichs-App"
             },
-            videoUrl: "/kale-and-me-desktop.webm",
-            videoUrlMobile: "/kale-and-me-mobile.webm",
+            videoUrl: "/kale-and-me-desktop.mp4",
+            videoUrlMobile: "/kale-and-me-mobile.mp4",
             colorClass: "bg-ben-bluegray-1",
             buttons: ["figma", "adobe-xd", "adobe-illustrator", "nextjs", "formik", "react-query", "docker", "tailwindcss", "xstate", "swiperjs"],
             text: `
@@ -246,8 +246,8 @@ const projects: Record<string,projectEntry[]> = {
                 target: "_blank",
                 text: "Website"
             },
-            videoUrl: "/susanne-preiss-desktop.webm",
-            videoUrlMobile: "/susanne-preiss-mobile.webm",
+            videoUrl: "/susanne-preiss-desktop.mp4",
+            videoUrlMobile: "/susanne-preiss-mobile.mp4",
             colorClass: "bg-ben-beige-1",
             buttons: ["adobe-illustrator", "javascript", "webpack", "sass"],
             text: `
