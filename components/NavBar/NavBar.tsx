@@ -49,7 +49,7 @@ export default function NavBar() {
                                 </Clickable>
                                 <div className="hidden md:block absolute left-1/2 -translate-x-1/2">
                                     <div className="flex space-x-3">
-                                        {fetchMenu(locale).map((menuEntry, key) => <NavLink key={key} message={menuEntry.message} href={menuEntry.href} />)}  
+                                        {fetchMenu(locale).map((menuEntry, key) => <NavLink type="next-link" key={key} message={menuEntry.message} href={menuEntry.href} />)}  
                                     </div>
                                 </div>
                                 <div className="md:hidden">
