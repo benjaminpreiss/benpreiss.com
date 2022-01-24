@@ -1,6 +1,6 @@
 import ReactPlayer from 'react-player/file'
 import Clickable from '../Clickable/Clickable'
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import TextLink from '../TextLink/TextLink'
 import parse, {Element, domToReact, HTMLReactParserOptions} from 'html-react-parser';
 import {useWindowContext} from '../../context/windowContext'
@@ -49,8 +49,9 @@ export default function WorkProject({frameWorkButtons, videoUrlMobile, color, pr
           }
         }
       }
-    const [isInView, setIsInView] = useState(false)
     const targetRef = useRef(null)
+    const mobileVideoRef = useRef<ReactPlayer>(null)
+    const desktopVideoRef = useRef<ReactPlayer>(null)
     useEffect(() => {
         const options = {
             root: null,
@@ -59,7 +60,21 @@ export default function WorkProject({frameWorkButtons, videoUrlMobile, color, pr
         }
         const callback = (entries: IntersectionObserverEntry[]) => {
             entries.forEach((entry) => {
-                setIsInView(entry.isIntersecting)
+                if(entry.isIntersecting) {
+                    if(mobileVideoRef.current) {
+                        mobileVideoRef.current.getInternalPlayer().play()
+                    }
+                    if(desktopVideoRef.current) {
+                        desktopVideoRef.current.getInternalPlayer().play()
+                    }
+                } else {
+                    if(mobileVideoRef.current) {
+                        mobileVideoRef.current.getInternalPlayer().pause()
+                    }
+                    if(desktopVideoRef.current) {
+                        desktopVideoRef.current.getInternalPlayer().pause()
+                    }
+                }
             });
           };
         const observer = new IntersectionObserver(callback, options);
@@ -97,8 +112,8 @@ export default function WorkProject({frameWorkButtons, videoUrlMobile, color, pr
             </div>
             <div style={{ backgroundColor: color}} className={`mt-8 w-full py-14`}>
                 <div className='flex items-center w-full max-w-sm mx-auto md:max-w-screen-xl' ref={targetRef}>
-                    <ReactPlayer url={[videoUrlMobile, videoUrlMobileFb]} muted playing={isInView} playsinline loop width={dim.width > 768 ? "15%" : "65%"} height="100%" className="mx-auto shadow-video-sm overflow-hidden video-container" />
-                    {dim.width > 768 ? <ReactPlayer url={[videoUrl, videoUrlFb]} muted playing={isInView} playsinline loop width="65%" height="100%" className="mx-auto shadow-video-sm overflow-hidden video-container" /> : null}
+                    <ReactPlayer url={[videoUrlMobile, videoUrlMobileFb]} muted ref={mobileVideoRef} playing playsinline loop width={dim.width > 768 ? "15%" : "65%"} height="100%" className="mx-auto shadow-video-sm overflow-hidden video-container" />
+                    {dim.width > 768 ? <ReactPlayer url={[videoUrl, videoUrlFb]} muted ref={desktopVideoRef} playing playsinline loop width="65%" height="100%" className="mx-auto shadow-video-sm overflow-hidden video-container" /> : null}
                 </div>
             </div>
         </div>
