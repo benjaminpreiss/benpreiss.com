@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function mail(req: NextApiRequest, res: NextApiResponse) {
-
+    
     const { name, email, message } = req.body;
   
     const transporter = nodemailer.createTransport({
@@ -16,7 +16,7 @@ export default async function mail(req: NextApiRequest, res: NextApiResponse) {
     });
   
     const mailOption = {
-        from: `${email}`,
+        from: "website@benpreiss.com",
         to: `${process.env.EMAIL}`,
         subject: `New mail from ${email}`,
         text: `
