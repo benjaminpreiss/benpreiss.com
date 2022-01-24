@@ -299,6 +299,8 @@ type contactForm = {
     privacyLink: string
     footNote: string
     submitButtonText: string
+    submitButtonErrorText: string
+    submitButtonSuccessText: string
 }
 
 type footer = {
@@ -352,7 +354,9 @@ const contactForm: Record<string,contactForm> = {
         },
         privacyLink: "privacy policy",
         footNote: "This is not a newsletter sign up form. ",
-        submitButtonText: "Submit"
+        submitButtonText: "Submit",
+        submitButtonErrorText: "Error. Try again later please!",
+        submitButtonSuccessText: "Successfully sent email"
     },
     de: {
         title: "Kontakt",
@@ -390,7 +394,9 @@ const contactForm: Record<string,contactForm> = {
         },
         privacyLink: "Datenschutzerklärung",
         footNote: "Dies ist kein Formular zur Newsletter Registrierung. ",
-        submitButtonText: "Abschicken"
+        submitButtonText: "Abschicken",
+        submitButtonErrorText: "Fehler. Bitte probiere es später erneut!",
+        submitButtonSuccessText: "Mail erfolgreich verschickt!"
     }
 }
 

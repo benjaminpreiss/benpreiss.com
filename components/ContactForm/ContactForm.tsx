@@ -4,6 +4,7 @@ import {object, string} from 'yup';
 import TextLink from '../TextLink/TextLink'
 import { fetchContactForm } from '../../util/backendFetching'
 import { useRouter } from 'next/router'
+import { useState } from "react";
 
 type FormValuesType = {
     name: string
@@ -11,7 +12,10 @@ type FormValuesType = {
     message: string
 }
 
+type submitState = "sending" | "error" | "success" | "waiting"
+
 export default function ContactForm() {
+    const [submitState, setSubmitState] = useState<submitState>("waiting")
     const router = useRouter()
     const { locale } = router
     const contactFormContent = fetchContactForm(locale)
@@ -27,6 +31,16 @@ export default function ContactForm() {
             .max(500, contactFormContent.messageField.validation.maxLengthError)
             .required(contactFormContent.messageField.validation.requiredError)
     });
+    async function handleSubmit(values: FormValuesType) {
+        return fetch('/api/mail', {
+            method: 'POST',
+            headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(values)
+        })
+    }
     const inputClasses = "bg-ben-gray-2 font-fgt text-lg leading-tight placeholder:opacity-60 py-2.5 px-5 mt-4 block w-full border-[1px] border-transparent focus:outline focus:outline-[3px]"
     const inputErrorClasses = (isError: boolean) => isError ? "border-ben-red-1 text-ben-red-1 focus:border-ben-red-1 focus:text-ben-red-1 focus:outline-ben-red-1/20 placeholder:text-ben-red-1" : "focus:border-ben-black focus:outline-ben-black/20 text-ben-black placeholder:text-ben-black"
     return (
@@ -63,17 +77,25 @@ export default function ContactForm() {
                         message: ""
                     }}
                     validationSchema={ContactFormSchema}
-                    onSubmit={(
+                    onSubmit={async (
                         values: FormValuesType,
-                        { setSubmitting }: FormikHelpers<FormValuesType>
-                      ) => {
+                        { setSubmitting, resetForm }: FormikHelpers<FormValuesType>
+                    ) => {
+                        setSubmitState("sending")
+                        try {
+                            await handleSubmit(values)
+                            setSubmitState("success")
+                        } catch (error) {
+                            setSubmitState("error")
+                        }
+                        resetForm();
                         setTimeout(() => {
-                          console.log(JSON.stringify(values, null, 2));
-                          setSubmitting(false);
-                        }, 500);
-                      }}
+                            setSubmitState("waiting")
+                            setSubmitting(false);
+                        }, 3000)
+                    }}
                 >
-                    {({ errors, touched, isValid, dirty }) => (
+                    {({ errors, touched, isValid, dirty, isSubmitting }) => (
                         <Form>
                             <label htmlFor="name" className='sr-only'>{contactFormContent.nameField.label}</label>
                             <Field id="name" name="name" placeholder={contactFormContent.nameField.placeholder} as="input" className={inputClasses + " " + inputErrorClasses(errors.name && touched.name ? true : false)} />
@@ -85,7 +107,10 @@ export default function ContactForm() {
                             <Field id="message" name="message" placeholder={contactFormContent.messageField.placeholder} as="textarea" className={inputClasses + " h-40 " + inputErrorClasses(errors.message && touched.message ? true : false)} />
                             <div className="font-fgt w-full text-right pr-4 font-normal pt-1 text-ben-red-1 -mb-1"><ErrorMessage name="message" /></div>
                             <p className="font-fgt text-normal leading-tight md:ml-6 text-center md:text-left w-full mt-3">{contactFormContent.footNote}<br className="md:hidden"/><TextLink type="next-link" color="white" href="/privacy"><span className='font-fgt text-normal font-light'>{contactFormContent.privacyLink}</span></TextLink></p>
-                            <button disabled={!isValid || !dirty} type="submit" className="bg-ben-black w-full text-white text-center font-fg font-medium text-lg py-1 px-4 mt-4 hover:bg-ben-gray-6 active:bg-ben-gray-5 active:scale-95 border-[3px] border-transparent focus:border-white/80 outline outline-transparent focus:outline-ben-black focus:outline-[1px] disabled:bg-ben-gray-4">{contactFormContent.submitButtonText}</button>
+                            <button disabled={!isValid || !dirty || isSubmitting} type="submit" className={`bg-ben-black w-full text-white text-center font-fg font-medium text-lg py-1 px-4 mt-4 border-[3px] border-transparent focus:border-white/80 outline outline-transparent focus:outline-ben-black focus:outline-[1px] relative ${submitState === "waiting" ? "disabled:bg-ben-gray-4 hover:bg-ben-gray-6 active:bg-ben-gray-5 active:scale-95 disabled:active:bg-ben-black" : submitState === "sending" ? "text-transparent" : "bg-ben-black"}`}>
+                                {submitState === "waiting" ? contactFormContent.submitButtonText : submitState === "error" ? contactFormContent.submitButtonErrorText : submitState === "success" ? contactFormContent.submitButtonSuccessText : contactFormContent.submitButtonText}
+                                <div className={`absolute items-center justify-center inset-0 ${submitState === "sending" ? "flex" : "hidden"}`}><div className="w-6 h-6 animate-spin bg-loading bg-center bg-contain bg-no-repeat"></div></div>
+                            </button>
                         </Form>
                     )}
                 </Formik>

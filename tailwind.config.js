@@ -53,6 +53,7 @@ module.exports = {
         'figma': "url('/figma.svg')",
         'xstate': "url('/xstate.svg')",
         'copy': "url('/copy.svg')",
+        'loading': "url('/loading.svg')"
       },
       boxShadow: {
         'nav-sm': '0px 0px 40px rgba(0, 0, 0, 0.1)',
