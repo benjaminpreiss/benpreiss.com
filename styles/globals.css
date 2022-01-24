@@ -35,6 +35,10 @@
         @apply text-ben-black;
     }
 
+    #__next {
+        @apply relative;
+    }
+
     .cms-intro-section {
         @apply mt-8 font-fgt font-light text-lg w-full max-w-sm px-10 text-center md:text-left leading-tight;
         p {

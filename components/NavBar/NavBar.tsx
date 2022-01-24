@@ -34,6 +34,7 @@ export default function NavBar() {
     }, [])
     return (
         <>
+            {isOpen === true ?<div className="absolute inset-0 bg-white z-10"></div> : null}
             <div id="start">
                 {(isOpen === true) ? 
                     <Menu setIsOpen={setIsOpen} /> : (
