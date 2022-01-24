@@ -79,7 +79,7 @@ const Home: NextPage = () => {
       <div className='bg-ben-gray-1 w-full pt-36 overflow-hidden space-y-52 pb-4' id="work">
         {fetchProjects(locale).map((projectEntry, key) => {
           return (
-            <WorkProject key={key} videoUrlMobile={projectEntry.videoUrlMobile} frameWorkButtons={fetchFrameWorkButtons(projectEntry.buttons)} videoUrl={projectEntry.videoUrl} color={projectEntry.colorClass} projectEntry={projectEntry} />
+            <WorkProject key={key} videoUrlMobile={projectEntry.videoUrlMobile} videoUrlMobileFb={projectEntry.videoUrlMobileFb} frameWorkButtons={fetchFrameWorkButtons(projectEntry.buttons)} videoUrl={projectEntry.videoUrl} videoUrlFb={projectEntry.videoUrlFb} color={projectEntry.colorClass} projectEntry={projectEntry} />
           )
         })}
       </div>
