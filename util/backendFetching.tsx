@@ -135,21 +135,21 @@ const projects: Record<string,projectEntry[]> = {
             `
         },
         {
-            title: "3d prima", 
+            title: "coordinet", 
             projectLink: {
-                href: "https://3dprima.plusquam.site/",
+                href: "https://coordinet.plusquam.site",
                 target: "_blank",
                 text: "compare app"
             },
-            videoUrl: "/kale-and-me-desktop.webm",
-            videoUrlMobile: "/kale-and-me-mobile.webm",
-            videoUrlFb: "/kale-and-me-desktop.mp4",
-            videoUrlMobileFb: "/kale-and-me-mobile.mp4",
+            videoUrl: "/coordinet-desktop.webm",
+            videoUrlMobile: "/coordinet-mobile.webm",
+            videoUrlFb: "/coordinet-desktop.mp4",
+            videoUrlMobileFb: "/coordinet-mobile.mp4",
             colorClass: "#E6EAEE",
             buttons: ["figma", "adobe-xd", "adobe-illustrator", "nextjs", "formik", "react-query", "docker", "tailwindcss", "xstate", "swiperjs"],
             text: `
             <p>
-                <em>Design</em> and <em>development</em> of a progressive web app for <a href="https://www.3dprima.com/" target="_blank">3D Prima</a>, a <em>3D printer retail company</em>. 
+                <em>Design</em> and <em>development</em> of a progressive web app for a client of <a href="https://coordi.net/" target="_blank">Coordinet</a>, an <em>IT consultancy</em>. 
             </p>
             <p>
                 The app is meant to help customers <em>compare 3D printers</em> based on a <em>vast number of criteria</em>.
