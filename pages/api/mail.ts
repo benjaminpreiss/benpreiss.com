@@ -16,8 +16,8 @@ export default async function mail(req: NextApiRequest, res: NextApiResponse) {
     });
   
     const mailOption = {
-        from: "website@benpreiss.com",
-        to: `${process.env.EMAIL}`,
+        from: `${process.env.EMAIL_FROM}`,
+        to: `${process.env.EMAIL_TO}`,
         subject: `New mail from ${email}`,
         text: `
         ${name} wrote:
