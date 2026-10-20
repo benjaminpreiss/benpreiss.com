@@ -1,8 +1,8 @@
 THIRD-PARTY NOTICES
 
 This file accompanies the portfolio's distributed JavaScript and verified icon assets.
-It does not grant rights to portfolio copy, branding, photographs, project media or
-unverified assets. Fonts carry separate OFL notices under /fonts/.
+It does not grant reuse rights to portfolio copy, branding, photographs, project
+media or other excluded assets. Fonts carry separate OFL notices under /fonts/.
 See LICENSING.md in the source repository for license scope and exclusions.
 
 ========================================================================

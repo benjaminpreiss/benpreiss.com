@@ -14,9 +14,9 @@ posters or recordings, third-party logos/icons, or fonts. Their presence in a
 checkout or build is not permission to reuse or redistribute them.
 
 Replace portfolio material and personal information before adapting this site
-for another person. Project/client rights and poster redistribution approval
-must be resolved separately before publishing. This license does not clear
-historical assets or credentials in Git history for publication.
+for another person. The owner has confirmed the permissions for publishing the
+current portfolio assets, including project media and posters. This does not
+extend the application's MIT grant to those assets or grant reuse rights to others.
 
 ## Fonts and third-party assets
 
@@ -29,8 +29,9 @@ historical assets or credentials in Git history for publication.
 - Iconoir controls retain their upstream MIT license; the verified X, LinkedIn
   and Signal paths retain Simple Icons 11.15.0's CC0 terms. These are separate
   from the application's MIT grant and do not clear trademark rights.
-- Other social/technology logos and existing utility artwork still require
-  provenance and rights review.
+- Permissions for the remaining social/technology logos and utility artwork
+  are confirmed by the owner. Their respective license and trademark terms
+  remain applicable.
 - Dependencies retain their respective upstream licenses. Installing or bundling
   them does not relicense them under this repository's MIT terms.
 

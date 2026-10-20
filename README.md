@@ -122,6 +122,6 @@ Original application code is available under the [MIT License](LICENSE). Portfol
 
 Without an origin, local builds omit absolute metadata and warn rather than guessing a domain. Setting these variables does not configure hosting or enable search indexing.
 
-**The site is not yet cleared for public deployment.** Pages currently emit `noindex`, and no deployment command or hosting adapter is configured. Publishing still requires legal/hosting and origin review, poster redistribution approval, repository/history secrets and licensing review, and hosted/device acceptance—including HLS playback and iPhone/iPad Safari.
+**The site is not yet cleared for public deployment.** Pages currently emit `noindex`, and no deployment command or hosting adapter is configured. Asset permissions are confirmed by the owner. Deployment still requires legal/hosting and origin review, final source/output checks, and hosted/device acceptance—including HLS playback and iPhone/iPad Safari.
 
 Astro copies files from `public/` regardless of Git ignore rules. Inspect build output before publishing; generated fonts and their OFL notices belong in the output, but local video binaries and private assets do not. The build audit rejects missing referenced assets and prohibited proprietary fonts. A large JavaScript chunk warning also remains to be reviewed.
