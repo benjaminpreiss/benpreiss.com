@@ -8,7 +8,7 @@ interface Props {
 }
 const { id, name, label, type = "text", placeholder = label } = Astro.props;
 const inputClasses =
-  "disabled:opacity-100 disabled:[-webkit-text-fill-color:currentColor] bg-ben-gray-2 font-fgt text-lg leading-tight placeholder:opacity-60 py-2.5 px-5 mt-4 block w-full border-[1px] border-transparent focus-visible:outline focus-visible:outline-[3px] focus-visible:border-ben-black focus-visible:outline-ben-black/20 text-ben-black placeholder:text-ben-black";
+  "disabled:opacity-100 disabled:[-webkit-text-fill-color:currentColor] bg-gray-2 type-lg-regular placeholder:opacity-60 py-2.5 px-5 mt-4 block w-full border-[1px] border-transparent focus-visible:outline focus-visible:outline-[3px] focus-visible:border-ink focus-visible:outline-ink/20 text-ink placeholder:text-ink";
 ---
 
 <label for={id} class="sr-only">

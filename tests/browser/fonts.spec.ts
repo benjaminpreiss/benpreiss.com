@@ -15,7 +15,7 @@ for (const route of ["/", "/hello"]) {
       const faces = await page.evaluate(async () => {
         const sample = "English Deutsch ÄÖÜ äöü ß ẞ €";
         const loaded = await Promise.all(
-          ["400", "500", "600", "700", "italic 450", "350", "800"].map(async (style) => {
+          ["400", "500", "600", "700", "italic 500", "350", "800"].map(async (style) => {
             const faces = await document.fonts.load(`${style} 16px "Work Sans"`, sample);
             return faces.map((face) => ({
               family: face.family,

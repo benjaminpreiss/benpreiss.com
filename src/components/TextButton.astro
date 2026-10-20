@@ -1,0 +1,39 @@
+---
+import { focusBrackets } from "../lib/control-styles";
+
+interface Props {
+  label: string;
+  href: string;
+  icon?: string;
+  variant?: "outline" | "filled";
+}
+const { label, href, icon, variant = "outline" } = Astro.props;
+---
+
+<a
+  {href}
+  data-text-button
+  data-variant={variant}
+  rel="noreferrer"
+  class:list={[
+    focusBrackets,
+    "group/button inline-flex min-h-11 max-w-full items-center justify-center gap-2 rounded-control px-4 py-2.5 type-lg-semibold focus-visible:!bg-control-hover focus-visible:!text-ink focus-visible:!shadow-none",
+    variant === "outline"
+      ? "bg-white text-ink shadow-control-outline hover:bg-control-hover active:bg-control-active"
+      : "bg-ink text-white shadow-control-outline hover:bg-control-filled-hover hover:shadow-none active:bg-control-filled-active active:shadow-control-outline",
+  ]}
+>
+  <span>{label}</span>
+  {icon && (
+    <img
+      src={icon}
+      width="24"
+      height="24"
+      alt=""
+      class:list={[
+        "h-6 w-6 shrink-0",
+        variant === "filled" && "invert group-focus-visible/button:invert-0",
+      ]}
+    />
+  )}
+</a>

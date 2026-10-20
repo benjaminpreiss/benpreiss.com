@@ -15,7 +15,17 @@ Every `content/pages/**/*.mdoc` document requires explicit `permalink`, `locale`
 
 `system/not-found.mdoc` owns bilingual 404 prose and explicit homepage links via `Language` blocks. It does not join the public page/translation collection. Build audits validate rendered internal links, fragments and asset references, including footer and 404 content. Missing local assets, including video references and required fonts, fail the build. Passing this audit is not release acceptance.
 
-## Introduction and social links
+## Introduction and booking link
+
+The homepages replace intro social links with a booking CTA:
+
+```markdoc
+{% TextButton label="book a call" href="https://example.org/booking#public-link" icon="/iconoir/video-camera.svg" /%}
+```
+
+`label` and an HTTPS `href` are required. The optional decorative `icon` is a local asset path; `variant` is `outline` (default) or `filled`. It is a normal link that works without JavaScript, not a calendar embed. Preserve the full authored fragment when changing booking URLs. Social links remain supported and are used in the footer.
+
+## Social links
 
 ```markdoc
 {% Intro id="start" %}

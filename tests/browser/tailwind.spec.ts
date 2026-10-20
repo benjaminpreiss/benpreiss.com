@@ -23,14 +23,14 @@ for (const width of [390, 768, 769, 1440]) {
       const prose = page.locator("#work article").first();
       await expect(prose.locator("p").first()).toHaveCSS("font-size", "15.75px");
       await expect(prose.locator("p").first()).toHaveCSS("line-height", "23.625px");
-      await expect(prose.locator("p").first()).toHaveCSS("font-weight", "350");
-      await expect(prose.locator("em").first()).toHaveCSS("font-weight", "450");
+      await expect(prose.locator("p").first()).toHaveCSS("font-weight", "400");
+      await expect(prose.locator("em").first()).toHaveCSS("font-weight", "500");
       await expect(prose.locator("em").first()).toHaveCSS("font-style", "italic");
       await expect(prose.locator("strong").first()).toHaveCSS("font-weight", "600");
       await expect(page.locator("#start strong").first()).toHaveCSS("font-weight", "600");
-      await expect(page.locator("#start em").first()).toHaveCSS("font-weight", "450");
+      await expect(page.locator("#start em").first()).toHaveCSS("font-weight", "500");
       const link = page.locator("#work article p a").first();
-      await expect(link).toHaveCSS("font-weight", "600");
+      await expect(link).toHaveCSS("font-weight", "500");
       await expect(link).toHaveCSS("text-decoration-line", "underline");
       await expect(link).toHaveCSS("padding", "2px");
       await expect(link).toHaveCSS("margin", "-3px");

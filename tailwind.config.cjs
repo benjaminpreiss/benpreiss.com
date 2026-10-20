@@ -1,41 +1,24 @@
 const plugin = require("tailwindcss/plugin");
+const tokens = require("./styles/tokens.json");
 
 module.exports = {
   content: ["./src/**/*.{astro,svelte,ts}", "./content/**/*.mdoc"],
   theme: {
     extend: {
-      fontFamily: {
-        // Existing display/body aliases now share the approved replacement family.
-        logo: ['"Onest Logo"', "Arial", "sans-serif"],
-        fg: ['"Work Sans"', "Arial", "sans-serif"],
-        fgt: ['"Work Sans"', "Arial", "sans-serif"],
-      },
-      // Retain the owner's smaller typography scale during font comparisons.
-      // Scale typography by 14/16 without changing the root rem/layout scale.
-      fontSize: {
-        sm: ["0.765625rem", { lineHeight: "1.25rem" }],
-        base: ["0.875rem", { lineHeight: "1.5rem" }],
-        lg: ["0.984375rem", { lineHeight: "1.75rem" }],
-        xl: ["1.09375rem", { lineHeight: "1.75rem" }],
-        "2xl": ["1.3125rem", { lineHeight: "2rem" }],
-        "3xl": ["1.640625rem", { lineHeight: "2.25rem" }],
-        brand: ["1.44375rem", { lineHeight: "2.3rem" }],
-      },
+      fontFamily: tokens.fontFamily,
+      fontWeight: tokens.fontWeight,
+      fontSize: Object.fromEntries(
+        Object.entries(tokens.fontSize).map(([name, size]) => [
+          name,
+          [`${size / 16}rem`, { lineHeight: tokens.lineHeight }],
+        ]),
+      ),
+      maxWidth: tokens.maxWidth,
+      borderRadius: tokens.borderRadius,
       backdropBlur: {
         "nav-sm": "10px",
       },
-      colors: {
-        "ben-black": "#212121",
-        "ben-gray-1": "#fafafa",
-        "ben-gray-2": "#f6f6f6",
-        "ben-gray-3": "#efefef",
-        "ben-gray-4": "#e4e4e4",
-        "ben-gray-5": "#797878",
-        "ben-gray-6": "#4c4c4c",
-        "ben-bluegray-1": "#E6EAEE",
-        "ben-beige-1": "#EFEAE3",
-        "ben-red-1": "#FF0000",
-      },
+      colors: tokens.colors,
       backgroundImage: {
         "nav-burger": "url('/nav-burger.svg')",
         "cross-x": "url('/nav-cross.svg')",
@@ -61,6 +44,7 @@ module.exports = {
         copy: "url('/copy.svg')",
       },
       boxShadow: {
+        "control-outline": `inset 0 0 0 1.5px ${tokens.colors.ink}`,
         "nav-sm": "0px 0px 40px rgba(0, 0, 0, 0.1)",
         "video-sm": "4px 4px 20px rgba(0, 0, 0, 0.25)",
       },
@@ -76,7 +60,33 @@ module.exports = {
     },
   },
   plugins: [
-    plugin(function ({ addVariant }) {
+    plugin(function ({ addComponents, addVariant, theme }) {
+      const typography = {};
+      for (const [size, pixels] of Object.entries(tokens.fontSize)) {
+        if (size === "brand") continue;
+        for (const [style, weight] of Object.entries({
+          regular: tokens.fontWeight.normal,
+          semibold: tokens.fontWeight.semibold,
+          bold: tokens.fontWeight.bold,
+          emphasis: tokens.fontWeight.emphasis,
+        })) {
+          typography[`.type-${size}-${style}`] = {
+            fontFamily: tokens.fontFamily.sans.join(", "),
+            fontSize: `${pixels / 16}rem`,
+            fontWeight: weight,
+            fontStyle: style === "emphasis" ? "italic" : "normal",
+            lineHeight: tokens.lineHeight,
+            letterSpacing: "0",
+          };
+        }
+      }
+      typography[".type-wordmark"] = {
+        fontFamily: tokens.fontFamily.logo.join(", "),
+        fontSize: `${tokens.fontSize.brand / 16}rem`,
+        fontWeight: tokens.fontWeight.wordmark,
+        lineHeight: theme("spacing.7"),
+      };
+      addComponents(typography);
       addVariant("supports-backdrop-blur", "@supports (backdrop-filter: blur(0px))");
     }),
   ],

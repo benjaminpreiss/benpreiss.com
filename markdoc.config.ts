@@ -117,6 +117,15 @@ export default defineMarkdocConfig({
     Intro: { render: component("./src/components/Intro.astro"), attributes: { id: sectionId } },
     IntroColumn: { render: component("./src/components/IntroColumn.astro") },
     IntroText: { render: component("./src/components/IntroText.astro") },
+    TextButton: {
+      render: component("./src/components/TextButton.astro"),
+      attributes: {
+        label: text,
+        href: { type: String, required: true, matches: /^https:\/\/[^\s]+$/ },
+        icon: { type: String, matches: /^\/(?!\/)[a-zA-Z0-9/_.-]+$/ },
+        variant: { type: String, matches: ["outline", "filled"] },
+      },
+    },
     SocialLinks: { render: component("./src/components/SocialLinks.astro") },
     SocialLink: {
       render: component("./src/components/SocialLink.astro"),

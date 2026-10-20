@@ -9,7 +9,7 @@ const { Content } = await render(entry);
 <!doctype html>
 <html
   lang="de"
-  class="font-fgt [font-synthesis:none] text-ben-black [-webkit-tap-highlight-color:transparent]"
+  class="font-sans [font-synthesis:none] text-ink [-webkit-tap-highlight-color:transparent]"
 >
   <head>
     <meta charset="utf-8" />
@@ -18,8 +18,8 @@ const { Content } = await render(entry);
     <meta name="description" content={entry.data.description} />
     <title>{entry.data.title}</title>
   </head>
-  <body class="text-base font-[350] [&_strong]:font-semibold [&_em]:font-[450] [&_em]:italic">
-    <main class="max-w-xl mx-auto px-8 py-24 font-fgt text-xl [&_h1]:font-fg [&_h1]:font-semibold [&_h1]:text-3xl [&_h2]:font-fg [&_h2]:font-semibold [&_h2]:text-3xl [&_a]:underline">
+  <body class="type-base-regular [&_strong]:font-bold [&_em]:font-emphasis [&_em]:italic">
+    <main class="max-w-xl mx-auto px-8 py-24 type-xl-regular [&_h1]:type-3xl-semibold [&_h2]:type-3xl-semibold [&_a]:underline">
       <Content />
     </main>
   </body>

@@ -47,13 +47,16 @@ test(
         [original.replace('src="/profile-pic.jpg"', 'src="javascript:alert(1)"'), /src/],
         [original.replace("width=477", "width=0"), /dimensions/],
         [original.replace("height=595", "height=1.5"), /dimensions/],
-        [original.replace('name="Fixture social profile"', 'name=""'), /name/],
+        [original.replace('label="Fixture booking"', 'label=""'), /label/],
         [
-          original.replace('href="https://example.org/social"', 'href="javascript:alert(1)"'),
+          original.replace(
+            'href="https://example.org/booking#fixture-token="',
+            'href="javascript:alert(1)"',
+          ),
           /href/,
         ],
         [
-          original.replace('icon="/social/github-black.svg"', 'icon="//example.org/icon.svg"'),
+          original.replace('icon="/iconoir/video-camera.svg"', 'icon="//example.org/icon.svg"'),
           /icon/,
         ],
       ] as const) {

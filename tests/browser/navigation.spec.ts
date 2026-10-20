@@ -84,9 +84,9 @@ for (const width of [390, 1440]) {
     const header = page.locator("header");
     await expect(header).toHaveCSS("position", "sticky");
     await expect(header).toHaveCSS("height", width >= 768 ? "88px" : "68px");
-    await expect(header).toHaveCSS("padding-top", width >= 768 ? "24px" : "10px");
-    await expect(header).toHaveCSS("padding-left", width >= 768 ? "144px" : "16px");
-    await expect(header).toHaveCSS("padding-right", width >= 768 ? "144px" : "8px");
+    await expect(header).toHaveCSS("padding-top", width >= 768 ? "20px" : "8px");
+    await expect(header).toHaveCSS("padding-left", width >= 768 ? "80px" : "12px");
+    await expect(header).toHaveCSS("padding-right", width >= 768 ? "80px" : "12px");
     expect((await header.boundingBox())?.width).toBe(width);
     await expect(header).toHaveCSS("box-shadow", "none");
     await page.evaluate(() => window.scrollTo(0, 150));

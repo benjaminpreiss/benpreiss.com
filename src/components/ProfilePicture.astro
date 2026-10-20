@@ -8,6 +8,6 @@ interface Props {
 const { src, alt, width, height } = Astro.props;
 ---
 
-<div class="w-full max-w-sm md:max-w-xs px-14">
+<div class="w-full max-w-[17rem] shrink-0 md:max-w-[13rem]">
   <img {src} {alt} {width} {height} fetchpriority="high" />
 </div>

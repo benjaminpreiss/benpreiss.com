@@ -1,80 +1,121 @@
-# Astro portfolio — pre-design checkpoint
+# Ben Preiss — portfolio
 
-This isolated worktree migrates committed Next.js baseline `33d9d96c512ee68043e10c6e55df075c11ae598b`. **Local only: no deployment authorized.** Both original projects and ticket 01 evidence remain outside this worktree and unchanged.
+A bilingual portfolio for Benjamin Preiss, freelance web developer and product designer. Built with **Astro**, **Markdoc**, **Svelte**, **Tailwind CSS** and **TypeScript**.
 
-## Run
+The site is statically generated. Markdoc owns the content and page composition; Svelte adds interactive navigation and project-video playback where needed.
 
-Use Node **24.20.0** (`.node-version`) and pnpm **10.8.0** (`packageManager`). All direct dependencies are exactly pinned; use the committed pnpm lockfile:
+## Features
+
+- German (`/`) and English (`/en`) homepages with selected projects and a Proton Calendar booking link.
+- Responsive project recordings served over Livepeer HLS, with lazy loading, offscreen pause, reduced-motion support and manual playback controls.
+- Keyboard-accessible navigation and language switching, with a native disclosure fallback without JavaScript.
+- Localized privacy pages at `/privacy` and `/en/privacy`, shared footers and a bilingual 404.
+- Self-hosted Work Sans and an Onest wordmark subset, generated from pinned dependencies.
+- A deliberately disabled “Coming soon” contact form. Contact is available through email and booking links; there is no mail-delivery backend.
+
+## Getting started
+
+Use **Node 24.20.0** (see `.node-version`) and **pnpm 10.8.0**. Direct dependencies are pinned, and `pnpm-lock.yaml` is committed.
 
 ```sh
 pnpm install --frozen-lockfile --strict-peer-dependencies
 pnpm dev
 ```
 
-In this sandbox, keep configuration and cache access inside the worktree:
+The development server binds to `127.0.0.1`, normally on port `4321`.
+
+Installation generates the public font binaries. `pnpm dev` and `pnpm build` also regenerate missing or changed fonts. If installation scripts are disabled, run `pnpm fonts:generate` before tests or direct Astro commands.
+
+To build and inspect the static site locally:
 
 ```sh
-export NPM_CONFIG_USERCONFIG="$PWD/.npmrc"
-export NPM_CONFIG_GLOBALCONFIG=/dev/null
-export NPM_CONFIG_CACHE="$PWD/.npm-cache"
-export ASTRO_TELEMETRY_DISABLED=1
+pnpm build
+pnpm preview
 ```
 
-Install generates the five public WOFF2 files from pinned Fontsource packages; no font binaries are tracked. Dev and build also regenerate missing or changed fonts, including after an install with lifecycle scripts disabled. For direct Astro commands or tests after such an install, first run `pnpm fonts:generate`. Licenses and font READMEs remain tracked; generation requires no font-service requests.
+Output is written to the ignored `dist/` directory. Astro may background dev/preview when invoked by an agent; add `--ignore-lock` to keep the process in the foreground.
 
-The npm user configuration and global writable cache are not required. `.pnpm-store/` and `.npm-cache/` are ignored. Do not change sandbox policy just to use these commands.
+## Project structure
 
-Commands:
+| Path                     | Purpose                                                        |
+| ------------------------ | -------------------------------------------------------------- |
+| `content/pages/{de,en}/` | Localized homepages and privacy pages                          |
+| `content/navigation/`    | Navigation labels, destinations and accessibility copy         |
+| `content/footer/`        | Social links, privacy links and imprint content                |
+| `content/system/`        | Bilingual not-found content                                    |
+| `content/*.json`         | Playback messages and technology-button definitions            |
+| `src/components/`        | Astro presentation components and Svelte interactions          |
+| `src/lib/`               | Content validation, routing, SEO and playback logic            |
+| `src/pages/`             | Static route generation, 404, sitemap and robots output        |
+| `styles/`                | Font declarations, design tokens and styling documentation     |
+| `public/`                | Portrait, posters, icons, font notices and generated fonts     |
+| `scripts/`               | Font generation, build auditing and formatting tools           |
+| `tests/`                 | Unit/build tests, browser tests and synthetic content fixtures |
 
-- `pnpm dev`: loopback Astro development server.
-- `pnpm build`: static output in ignored `dist/`.
-- `pnpm preview`: loopback preview of that output.
-- `pnpm typecheck`: Astro, Svelte and standalone strict TypeScript checks.
-- `pnpm lint`: Oxlint correctness checks plus Markdoc hygiene.
-- `pnpm format` / `pnpm format:check`: explicitly separated formatter ownership.
-- `pnpm test`: schema, real positive/negative builds, rendered link/asset audits, real-content legal/HTTP route checks, formatter and isolated Git hook tests. Route tests use a foreground preview on port 44322.
-- `pnpm test:browser`: component-scoped rendering/navigation checks using synthetic Markdoc from `tests/fixtures/`, built in an isolated temporary site automatically. No assertions freeze live portfolio copy. See [testing guide](tests/README.md). Requires a Playwright Chromium installation (`pnpm exec playwright install chromium`) or an authorized disposable browser via `CDP_ENDPOINT=http://127.0.0.1:9222`.
+## Editing content
 
-Astro 7 can automatically background dev/preview when it detects an agent. Use `pnpm dev --ignore-lock` or `pnpm preview --ignore-lock` for a foreground process. Otherwise use `pnpm exec astro dev stop` / `pnpm exec astro preview stop` to stop this worktree's background process. Browser tests use a foreground preview on port 44321 and stop it afterward.
+Edit localized Markdoc rather than hardcoding copy in components. Each page declares its `permalink`, `locale`, `translationKey`, `title` and `description`. Translation pairs and routes are explicit; locale is not inferred from a URL prefix.
 
-## Current slice
+Homepages compose the introduction, booking button, projects and contact section. Each project owns its prose, destination, color, recording dimensions, posters and HLS URLs. Booking labels and the complete booking URL—including its fragment—also live in Markdoc.
 
-- `/` and `/en`: baseline introduction prose, emphasis, line breaks, profile and social links rendered as static HTML. Navigation is a small Svelte island with native links and a native disclosure fallback without JavaScript.
-- `content/pages/{de,en}/home.mdoc`: one document per localized homepage, with an introduction and four repeated `Project` tags containing nested prose. Title, destination, explicit color, mobile/desktop recording attributes and locale are validated at build time. Technology buttons are composed with nested `TechnologyButtons` tags and reference shared JSON definitions.
-- `src/lib/pages.ts`: explicit `permalink`, `locale`, `translationKey`, title and description validation; duplicates and missing translation counterparts fail. Locale is never inferred from URL prefixes.
-- `/privacy` and `/en/privacy`: full baseline legal content in localized Markdoc. Canonical `content/footer/{de,en}/footer.mdoc` supplies footer/imprint content on all four pages. Tests verify the legal layout, key anchors and links without a duplicate content snapshot; legal currency still requires owner approval.
-- A bilingual `404.html`, sitemap and robots output are generated. Canonical/hreflang URLs require an explicit owner-approved `PRODUCTION_ORIGIN` build environment variable; absent that, local builds omit absolute metadata rather than inventing a domain. `RELEASE_BUILD=1` rejects a missing origin.
-- The temporary interaction demo has been removed. Hydration is covered by real navigation and video browser tests.
-- Fixed navigation without a scroll shadow, keyboard/Escape focus handling, responsive menu closing and explicit translation-pair language links are implemented. Navigation brand/links come from `content/navigation/{de,en}/navigation.mdoc` and target IDs authored on page sections. Missing targets and duplicate IDs fail the build. Language links preserve the initial section fragment when present in the target page. Contact links now target the real homepage contact section.
-- Tailwind 3, baseline palette, local typography and responsive project layout remain. German project backgrounds use valid intended colors. Contact is composed in Markdoc, with permanently disabled fields/submission, no delivery backend and honest clipboard feedback. Final full-page visual parity is not claimed.
-- Video.js 10.1.0 (`@videojs/html`, the v10 Svelte-compatible player package) loads on demand with owner-provided Livepeer HLS sources and a lazy hls.js/native playback adapter. It pauses offscreen and avoids desktop-video loading on mobile. Reduced motion displays posters until manual playback. Errors and autoplay denial have localized feedback. `public/posters/` contains derived stills pending redistribution approval. Local videos have been removed from `public/`; ignored videos are not required for builds. HLS-specific lifecycle/failure tests and real hosted/device acceptance remain outstanding.
+Build-time validation rejects invalid metadata, duplicate routes, missing translations, dangling navigation targets and missing local assets. Privacy prose has a single source in Markdoc, not a duplicate snapshot.
 
-There is no client router, animation framework, mail API, hosting adapter or deployment command in the active application. All pages are currently noindex as an additional local-work safeguard, not access control or permission to publish.
+See the [content editing guide](content/README.md).
 
-## Content ownership
+## Styling and typography
 
-Do not hardcode content in components. Localized prose/composition, profile pictures, social links, project media/colors and navigation belong in Markdoc. Only playback labels and technology button definitions remain in JSON under `content/`. Components own rendering and behavior only. Presentation uses co-located Tailwind utilities, including descendant, responsive, disabled and motion variants; there are no component `<style>` blocks. `styles/globals.css` contains only Tailwind directives and local `@font-face` declarations. The validated per-project color remains an inline runtime value, not a dynamically generated Tailwind class. See [the content editing guide](content/README.md).
+Tailwind consumes the palette and typography values in `styles/tokens.json`. Composite classes such as `type-lg-regular` and `type-2xl-semibold` set font family, size, weight/style and line-height together. Inline bold and emphasis inherit surrounding text metrics and change only weight/style.
 
-## Preservation and hooks
+Spacing uses Tailwind's standard utilities. Paragraph margins belong to content layouts, not typography assets. Shared controls use keyboard-only focus brackets and preserve their dimensions across interaction states.
 
-The owner-authorized removal of `legacy/` excludes the old Next application, mail endpoint, dependencies and lockfile from this application. A recovery archive remains outside the worktree in private migration evidence; both original repositories remain untouched. Privacy content lives only in localized Markdoc; route/layout/link checks no longer depend on a legacy JSON snapshot. New project posters remain included pending publication approval. OFL-licensed Work Sans and the Onest logo subset are generated from pinned dependencies; their binaries are ignored, while licenses and generation instructions are included. Original Founders Grotesk files were preserved outside the worktree's public directory in migration evidence, remain Git-ignored, and are rejected in build output. Videos remain Git-ignored.
+See [design tokens and typography](styles/README.md).
 
-**Do not publish `dist/`: deployment is not authorized.** The rebuilt output contains no local video files. Astro copies public assets regardless of Git ignore rules, so output inspection remains necessary. Work Sans is self-hosted with its OFL notice, without runtime font services or private assets. Build generates replacement fonts/licenses first; the output audit still rejects missing required font assets and missing local media references. Typography is owner-approved; other asset licensing, complete Livepeer verification and clean-checkout release acceptance remain gates.
+Font binaries are generated locally and Git-ignored; licenses and provenance remain tracked:
 
-Husky installs automatically in an ordinary standalone checkout. Here `.git` points into shared Git metadata belonging to the preserved project: `prepare` intentionally skips installation instead of changing shared `core.hooksPath`. Before any commit in this migration worktree, run:
+- [Work Sans](public/fonts/work-sans/README.md)
+- [Onest logo subset](public/fonts/onest/README.md)
 
 ```sh
-pnpm exec lint-staged
-pnpm typecheck
-pnpm test
+pnpm fonts:generate
+pnpm fonts:check
 ```
 
-Do not run `husky init` here. `tests/staging.test.ts` verifies actual Husky installation/commit execution in a disposable repository in the OS temporary directory, with lint-staged's default backup and partial-stage protection. Only that fixture stages/commits automatically; application commits require explicit owner authorization.
+Generation uses installed, pinned Fontsource packages without contacting a font service. Font licenses do not grant rights to portfolio copy, branding or other third-party assets.
 
-## Checkpoint scope
+## Quality checks
 
-This is a local work-in-progress checkpoint before implementing the new Penpot design, not a release. Checkpoint `3947212` passed 23 unit/build tests and 90 Chromium browser tests; the subsequent optional-docs formatter regression adds one unit test. Font generation now adds another regression test. Re-run the documented checks for each follow-up; checkpoint results are not release acceptance. Contact screenshots remain unchanged after removing dormant mail functionality.
+| Command             | Checks                                                          |
+| ------------------- | --------------------------------------------------------------- |
+| `pnpm lint`         | Oxlint and Markdoc hygiene                                      |
+| `pnpm format:check` | Oxfmt, Astro formatting and Markdoc whitespace                  |
+| `pnpm format`       | Apply formatting                                                |
+| `pnpm typecheck`    | Astro, Svelte and TypeScript diagnostics                        |
+| `pnpm test`         | Content contracts, real builds, asset audits, fonts and tooling |
+| `pnpm test:browser` | Layout, controls, navigation, typography and playback behavior  |
+| `pnpm build`        | Real-content static build and output audit                      |
 
-Still required before publication: HLS-specific lifecycle/failure regression coverage and longer/mobile playback checks; poster redistribution approval; legal/hosting disclosure and production-origin approval; repository/history secret and licensing review; hosted Chromium and actual iPhone/iPad Safari acceptance. The build currently warns about an unset production origin and a JavaScript chunk over 500 kB.
+For browser tests, install Chromium once:
 
-`docs/` is intentionally Git-ignored at the owner's request and is not required to install, build or test a fresh checkout. Private planning/recovery evidence, local configuration, generated output, videos and unapproved fonts are excluded from this application snapshot. The original repositories and Git ancestry remain preserved. No push or deployment is authorized.
+```sh
+pnpm exec playwright install chromium
+pnpm test:browser
+```
+
+An existing disposable Chromium instance can instead be used with `CDP_ENDPOINT=http://127.0.0.1:9222`.
+
+Tests build isolated sites in the OS temporary directory. Synthetic content exercises the real renderer without freezing editable portfolio prose, and no local video recordings are required. Test servers use ports `44321`, `44322` and `44324`; keep those ports available and do not place `TMPDIR` inside this repository. See the [testing guide](tests/README.md).
+
+Husky installs a pre-commit hook in standalone checkouts. It runs `lint-staged`, typechecks and unit/build tests. Installation is skipped in linked Git worktrees to avoid changing shared Git configuration; run these checks manually there.
+
+## Build configuration and publishing
+
+| Variable            | Behavior                                                                                                                                 |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `PRODUCTION_ORIGIN` | Explicit HTTPS origin for absolute canonical/hreflang metadata and sitemap URLs. Paths, credentials, queries and fragments are rejected. |
+| `RELEASE_BUILD=1`   | Fail the build when `PRODUCTION_ORIGIN` is missing.                                                                                      |
+
+Without an origin, local builds omit absolute metadata and warn rather than guessing a domain. Setting these variables does not configure hosting or enable search indexing.
+
+**The site is not yet cleared for public deployment.** Pages currently emit `noindex`, and no deployment command or hosting adapter is configured. Publishing still requires legal/hosting and origin review, poster redistribution approval, repository/history secrets and licensing review, and hosted/device acceptance—including HLS playback and iPhone/iPad Safari.
+
+Astro copies files from `public/` regardless of Git ignore rules. Inspect build output before publishing; generated fonts and their OFL notices belong in the output, but local video binaries and private assets do not. The build audit rejects missing referenced assets and prohibited proprietary fonts. A large JavaScript chunk warning also remains to be reviewed.

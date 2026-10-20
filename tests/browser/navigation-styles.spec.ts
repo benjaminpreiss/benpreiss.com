@@ -20,7 +20,10 @@ for (const width of [768, 1440]) {
     await link.focus();
     await page.keyboard.press("Tab");
     await page.keyboard.press("Shift+Tab");
-    await expect(link).toHaveCSS("outline-color", "rgba(33, 33, 33, 0.2)");
+    await expect(link).toHaveCSS("border-radius", "0px");
+    expect(await link.evaluate((el) => getComputedStyle(el, "::before").borderLeftWidth)).toBe(
+      "1px",
+    );
     await page.mouse.move(0, 0);
     await expect(link.locator("img")).toHaveCSS("opacity", "1");
     if (width < 768) await page.keyboard.press("Escape");
@@ -39,7 +42,9 @@ for (const width of [768, 1440]) {
     expect(await options.first().evaluate((element) => element.tagName)).toBe("SPAN");
     await expect(options.first()).not.toHaveAttribute("tabindex");
     await expect(languages.getByRole("link")).toHaveCount(1);
-    expect((await options.first().boundingBox())!.height).toBe(before!.height);
+    expect((await options.first().boundingBox())!.height).toBe(44);
+    // Long authored navigation labels may wrap at tablet widths rather than overflow.
+    expect(before!.height).toBeGreaterThanOrEqual(44);
     const toggleBox = (await toggle.boundingBox())!;
     for (const option of await options.all()) {
       const box = (await option.boundingBox())!;

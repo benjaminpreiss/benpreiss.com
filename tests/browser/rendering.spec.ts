@@ -45,11 +45,11 @@ test("Markdoc renders semantic prose without JavaScript", async ({ browser, base
   try {
     const page = await context.newPage();
     await page.goto("/hello");
-    const social = page.getByRole("link", { name: "Fixture social profile", exact: true });
-    await expect(social).toHaveAttribute("href", "https://example.org/social");
-    await expect(social).toHaveAttribute("target", "_blank");
-    await expect(social).toHaveAttribute("rel", "noopener noreferrer");
-    await expect(social.locator("img")).toHaveAttribute("src", "/social/github-black.svg");
+    const social = page.getByRole("link", { name: "Fixture booking", exact: true });
+    await expect(social).toHaveAttribute("href", "https://example.org/booking#fixture-token=");
+    await expect(social).not.toHaveAttribute("target");
+    await expect(social).toHaveAttribute("rel", "noreferrer");
+    await expect(social.locator("img")).toHaveAttribute("src", "/iconoir/video-camera.svg");
     await expect(social.locator("img")).toHaveAttribute("alt", "");
     const prose = page.locator("#start p").first().locator("..");
     await expect(prose.locator("strong")).toHaveText("Strong fixture text");

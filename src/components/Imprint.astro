@@ -6,8 +6,8 @@ const { title } = Astro.props;
 ---
 
 <section class="flex flex-col justify-center items-center mt-6 mb-4 md:mt-0 md:items-start px-4">
-  <h2 class="font-fg font-semibold text-lg md:mt-6 md:text-2xl">{title}</h2>
-  <dl class="grid grid-cols-2 w-full font-fg font-medium max-w-sm md:max-w-[22rem] text-sm text-right md:text-left gap-x-7 gap-y-3 mt-3">
+  <h2 class="type-lg-semibold md:mt-6 md:type-2xl-semibold">{title}</h2>
+  <dl class="grid grid-cols-2 w-full max-w-sm md:max-w-[22rem] type-sm-semibold text-right md:text-left gap-x-7 gap-y-3 mt-3">
     <slot />
   </dl>
 </section>

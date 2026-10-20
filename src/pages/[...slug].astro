@@ -80,7 +80,7 @@ const canonical = canonicalUrl(page.data.permalink);
 <!doctype html>
 <html
   lang={page.data.locale}
-  class="font-fgt [font-synthesis:none] text-ben-black [-webkit-tap-highlight-color:transparent]"
+  class="font-sans [font-synthesis:none] text-ink [-webkit-tap-highlight-color:transparent]"
 >
   <head>
     <meta charset="utf-8" />
@@ -98,7 +98,7 @@ const canonical = canonicalUrl(page.data.permalink);
         />
       ))}
   </head>
-  <body class="text-base font-[350] [&_strong]:font-semibold [&_em]:font-[450] [&_em]:italic">
+  <body class="type-base-regular [&_strong]:font-bold [&_em]:font-emphasis [&_em]:italic">
     <Navigation
       client:load
       locale={page.data.locale}

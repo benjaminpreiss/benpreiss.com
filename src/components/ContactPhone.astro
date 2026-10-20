@@ -11,5 +11,5 @@ interface Props {
 const { title, ...phone } = Astro.props;
 ---
 
-<h3 class="font-fg font-semibold text-xl leading-none mt-10">{title}</h3>
+<h3 class="type-xl-semibold mt-10">{title}</h3>
 <PhoneContact client:load {...phone} />

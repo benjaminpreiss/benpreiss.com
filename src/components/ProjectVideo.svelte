@@ -153,11 +153,11 @@
       onerror={() => reportFailure()}></video>
   </svelte:element>
   {#if ready}
-    <button class="[font:inherit] bg-white text-ben-black py-1 px-2 rounded absolute bottom-2 left-2 max-w-[calc(100%-1rem)] opacity-0 group-hover/video:opacity-100 focus-visible:opacity-100 motion-reduce:opacity-100 [@media(hover:none)]:opacity-100" type="button" onclick={() => toggle()} aria-label={`${playing ? text.pause : text.play}: ${title} — ${text.devices[device]}`}>
+    <button class="[font:inherit] bg-white text-ink py-1 px-2 rounded absolute bottom-2 left-2 max-w-[calc(100%-1rem)] opacity-0 group-hover/video:opacity-100 focus-visible:opacity-100 motion-reduce:opacity-100 [@media(hover:none)]:opacity-100" type="button" onclick={() => toggle()} aria-label={`${playing ? text.pause : text.play}: ${title} — ${text.devices[device]}`}>
       {playing ? text.pause : text.play}
     </button>
   {:else}
-    <a class="[font:inherit] bg-white text-ben-black py-1 px-2 rounded" href={"hls" in recording ? recording.hls : recording.mp4}>{text.open}</a>
+    <a class="[font:inherit] bg-white text-ink py-1 px-2 rounded" href={"hls" in recording ? recording.hls : recording.mp4}>{text.open}</a>
   {/if}
-  <p class="text-sm leading-normal bg-white" role="status">{message}</p>
+  <p class="type-sm-regular bg-white" role="status">{message}</p>
 </div>
