@@ -1,4 +1,4 @@
-import { readdirSync } from "node:fs";
+import { existsSync, readdirSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { checkMarkdoc } from "./markdoc-hygiene.ts";
 
@@ -11,7 +11,14 @@ const files = supplied.length
       ...readdirSync(".", { withFileTypes: true })
         .filter((file) => file.isFile())
         .map((file) => file.name),
-      ...["src", "scripts", "tests", "content", "styles", "docs"].flatMap((dir) =>
+      ...[
+        "src",
+        "scripts",
+        "tests",
+        "content",
+        "styles",
+        ...(existsSync("docs") ? ["docs"] : []),
+      ].flatMap((dir) =>
         readdirSync(dir, { recursive: true, encoding: "utf8" }).map((file) => `${dir}/${file}`),
       ),
     ];
