@@ -52,7 +52,10 @@ test(
           original.replace('href="https://example.org/social"', 'href="javascript:alert(1)"'),
           /href/,
         ],
-        [original.replace('icon="/github-black.svg"', 'icon="//example.org/icon.svg"'), /icon/],
+        [
+          original.replace('icon="/social/github-black.svg"', 'icon="//example.org/icon.svg"'),
+          /icon/,
+        ],
       ] as const) {
         writeFileSync(document, source);
         result = site.build();

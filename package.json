@@ -3,11 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "astro dev --host 127.0.0.1",
+    "dev": "node scripts/fonts.mjs && astro dev --host 127.0.0.1",
     "fonts:generate": "node scripts/fonts.mjs",
     "fonts:check": "node scripts/fonts.mjs --check",
     "preview": "astro preview --host 127.0.0.1",
-    "build": "astro build",
+    "build": "node scripts/fonts.mjs && astro build",
     "typecheck": "astro check && svelte-check --tsconfig ./tsconfig.json && tsc --noEmit",
     "lint": "oxlint --deny-warnings src scripts tests *.ts *.js *.mjs *.cjs && node scripts/markdoc-hygiene.ts --check",
     "format": "node scripts/format.ts --write",

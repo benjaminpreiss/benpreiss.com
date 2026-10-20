@@ -1,5 +1,6 @@
 import { existsSync, lstatSync } from "node:fs";
 import husky from "husky";
+import "./fonts.mjs";
 
 // A linked worktree shares Git configuration with the preserved original.
 // Never let Husky mutate that shared core.hooksPath during this migration.

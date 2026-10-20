@@ -11,7 +11,7 @@ pnpm fonts:generate
 pnpm fonts:check
 ```
 
-`scripts/fonts.mjs` maps `files/work-sans-{latin,latin-ext}-wght-{normal,italic}.woff2` to the corresponding `WorkSans[-Italic]-{latin,latin-ext}.woff2` assets. It also copies the package license verbatim. Generated assets are versioned; regeneration only writes changed bytes.
+`scripts/fonts.mjs` maps `files/work-sans-{latin,latin-ext}-wght-{normal,italic}.woff2` to the corresponding `WorkSans[-Italic]-{latin,latin-ext}.woff2` assets. It also copies the package license verbatim. Font binaries are Git-ignored and generated during install, dev and build; regeneration only writes changed bytes. License notices and this README remain versioned.
 
 Copyright 2019 The Work Sans Project Authors. Full notices and **SIL OFL 1.1** are in `OFL.txt`. Preserve that license/copyright when distributing; do not sell fonts alone, relicense them or imply endorsement. The website's code license does not replace OFL. No Reserved Font Names are specified in this package notice.
 

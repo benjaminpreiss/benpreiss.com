@@ -20,6 +20,8 @@ export NPM_CONFIG_CACHE="$PWD/.npm-cache"
 export ASTRO_TELEMETRY_DISABLED=1
 ```
 
+Install generates the five public WOFF2 files from pinned Fontsource packages; no font binaries are tracked. Dev and build also regenerate missing or changed fonts, including after an install with lifecycle scripts disabled. For direct Astro commands or tests after such an install, first run `pnpm fonts:generate`. Licenses and font READMEs remain tracked; generation requires no font-service requests.
+
 The npm user configuration and global writable cache are not required. `.pnpm-store/` and `.npm-cache/` are ignored. Do not change sandbox policy just to use these commands.
 
 Commands:
@@ -55,9 +57,9 @@ Do not hardcode content in components. Localized prose/composition, profile pict
 
 ## Preservation and hooks
 
-The owner-authorized removal of `legacy/` excludes the old Next application, mail endpoint, dependencies and lockfile from this application. A recovery archive remains outside the worktree in private migration evidence; both original repositories remain untouched. Privacy content lives only in localized Markdoc; route/layout/link checks no longer depend on a legacy JSON snapshot. New project posters and OFL-licensed Work Sans variable fonts are included. Original Founders Grotesk files were preserved outside the worktree's public directory in migration evidence, remain Git-ignored, and are rejected in build output. Videos remain Git-ignored.
+The owner-authorized removal of `legacy/` excludes the old Next application, mail endpoint, dependencies and lockfile from this application. A recovery archive remains outside the worktree in private migration evidence; both original repositories remain untouched. Privacy content lives only in localized Markdoc; route/layout/link checks no longer depend on a legacy JSON snapshot. New project posters remain included pending publication approval. OFL-licensed Work Sans and the Onest logo subset are generated from pinned dependencies; their binaries are ignored, while licenses and generation instructions are included. Original Founders Grotesk files were preserved outside the worktree's public directory in migration evidence, remain Git-ignored, and are rejected in build output. Videos remain Git-ignored.
 
-**Do not publish `dist/`: deployment is not authorized.** The rebuilt output contains no local video files. Astro copies public assets regardless of Git ignore rules, so output inspection remains necessary. Work Sans is self-hosted with its OFL notice, without runtime font services or private assets. Missing replacement fonts/license and missing local media references fail the build. Typography is owner-approved; other asset licensing, complete Livepeer verification and clean-checkout release acceptance remain gates.
+**Do not publish `dist/`: deployment is not authorized.** The rebuilt output contains no local video files. Astro copies public assets regardless of Git ignore rules, so output inspection remains necessary. Work Sans is self-hosted with its OFL notice, without runtime font services or private assets. Build generates replacement fonts/licenses first; the output audit still rejects missing required font assets and missing local media references. Typography is owner-approved; other asset licensing, complete Livepeer verification and clean-checkout release acceptance remain gates.
 
 Husky installs automatically in an ordinary standalone checkout. Here `.git` points into shared Git metadata belonging to the preserved project: `prepare` intentionally skips installation instead of changing shared `core.hooksPath`. Before any commit in this migration worktree, run:
 
@@ -71,7 +73,7 @@ Do not run `husky init` here. `tests/staging.test.ts` verifies actual Husky inst
 
 ## Checkpoint scope
 
-This is a local work-in-progress checkpoint before implementing the new Penpot design, not a release. The latest worktree validation passed 23 unit/build tests, 90 Chromium browser tests, lint, formatting, framework/type checks, font reproduction and a real-content static build. Contact screenshots remain unchanged after removing dormant mail functionality.
+This is a local work-in-progress checkpoint before implementing the new Penpot design, not a release. Checkpoint `3947212` passed 23 unit/build tests and 90 Chromium browser tests; the subsequent optional-docs formatter regression adds one unit test. Font generation now adds another regression test. Re-run the documented checks for each follow-up; checkpoint results are not release acceptance. Contact screenshots remain unchanged after removing dormant mail functionality.
 
 Still required before publication: HLS-specific lifecycle/failure regression coverage and longer/mobile playback checks; poster redistribution approval; legal/hosting disclosure and production-origin approval; repository/history secret and licensing review; hosted Chromium and actual iPhone/iPad Safari acceptance. The build currently warns about an unset production origin and a JavaScript chunk over 500 kB.
 

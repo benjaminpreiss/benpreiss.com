@@ -35,7 +35,7 @@ export function createFixtureSite({ productionContent = false } = {}) {
     }
     cpSync(join(root, "public"), join(dir, "public"), {
       recursive: true,
-      filter: (path) => !/\.(?:webm|mp4|mov)$/i.test(path),
+      filter: (path) => !/\.(?:webm|mp4|mov|woff2)$/i.test(path),
     });
     if (!productionContent) {
       // Asset-existence fixtures only, not playable media. Browser playback tests
@@ -48,6 +48,13 @@ export function createFixtureSite({ productionContent = false } = {}) {
           );
     }
     symlinkSync(join(root, "node_modules"), join(dir, "node_modules"), "dir");
+    // Exercise generation from pinned dependencies, never depend on local font binaries.
+    const fonts = spawnSync(process.execPath, ["scripts/fonts.mjs"], {
+      cwd: dir,
+      encoding: "utf8",
+    });
+    if (fonts.status !== 0)
+      throw new Error(`Fixture font generation failed: ${fonts.stdout}${fonts.stderr}`);
   } catch (error) {
     cleanup();
     throw error;

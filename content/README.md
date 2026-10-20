@@ -25,7 +25,7 @@ Every `content/pages/**/*.mdoc` document requires explicit `permalink`, `locale`
 Introduction prose goes here.
 {% /IntroText %}
 {% SocialLinks %}
-{% SocialLink name="GitHub" href="https://github.com/benjaminpreiss" icon="/github-black.svg" /%}
+{% SocialLink name="GitHub" href="https://github.com/benjaminpreiss" icon="/social/github-black.svg" /%}
 {% /SocialLinks %}
 {% /IntroColumn %}
 {% /Intro %}

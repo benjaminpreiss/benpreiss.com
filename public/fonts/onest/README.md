@@ -7,7 +7,7 @@ Input: `files/onest-latin-700-normal.woff2` (normal style, weight 700).
 
 The CSS family `Onest Logo` is applied only to the navigation brand with weight 700. `unicode-range` restricts selection to those letters as well; the binary itself is physically subset, not merely hidden behind a CSS range. Other text continues using Work Sans. If the authored brand changes, regenerate a suitable subset and update the CSS range/tests; unsupported characters otherwise use the declared fallback.
 
-`pnpm fonts:check` verifies reproducibility without writing files. Unit tests inspect the subset's actual cmap and require precisely those seven characters. Browser tests verify the local subset loads at weight 700, unsupported characters are outside its range, and no full Onest font is requested.
+The binary is Git-ignored and generated during install, dev and build. License notices and this README remain versioned. `pnpm fonts:check` verifies reproducibility without writing files. Unit tests inspect the subset's actual cmap and require precisely those seven characters. Browser tests verify the local subset loads at weight 700, unsupported characters are outside its range, and no full Onest font is requested.
 
 Copyright 2021 The Onest Project Authors. Distributed under **SIL OFL 1.1**; the complete package notice/license is in `OFL.txt`. Subsetting/redistribution are permitted subject to OFL conditions. No Reserved Font Names are specified in the supplied notice. Preserve the notices/license, do not sell fonts alone or relicense them, and do not imply author endorsement.
 

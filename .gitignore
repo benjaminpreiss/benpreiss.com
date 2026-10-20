@@ -56,11 +56,6 @@ pnpm-debug.log*
 *.otf
 *.woff
 *.woff2
-# Redistributable, owner-approved font assets (license shipped alongside).
-!/public/fonts/work-sans/WorkSans-latin.woff2
-!/public/fonts/work-sans/WorkSans-latin-ext.woff2
-!/public/fonts/work-sans/WorkSans-Italic-latin.woff2
-!/public/fonts/work-sans/WorkSans-Italic-latin-ext.woff2
-!/public/fonts/onest/benpreiss-700.woff2
+# Font binaries are generated from pinned dependencies; keep OFL notices and READMEs tracked.
 *.webm
 *.mp4

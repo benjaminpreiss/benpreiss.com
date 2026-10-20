@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 import subsetFont from "subset-font";
 
 // Package versions are pinned in package.json/pnpm-lock.yaml. This script never
-// fetches fonts from the network; it generates reviewable, versioned assets.
+// fetches fonts from the network; binaries are generated locally and Git-ignored.
 const require = createRequire(import.meta.url);
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const check = process.argv.includes("--check");
