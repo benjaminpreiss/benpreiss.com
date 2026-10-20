@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* Generated from pinned Fontsource packages; see pnpm fonts:generate.
-   Licenses and provenance: public/fonts/{work-sans,onest}. */
+   Licenses and provenance: licenses/fonts/{work-sans,onest}. */
 @layer base {
   @font-face {
     font-family: "Onest Logo";

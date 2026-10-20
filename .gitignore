@@ -56,6 +56,7 @@ pnpm-debug.log*
 *.otf
 *.woff
 *.woff2
-# Font binaries are generated from pinned dependencies; keep OFL notices and READMEs tracked.
+# Public font binaries/notices are generated; tracked notices live in licenses/fonts/.
+/public/fonts/
 *.webm
 *.mp4

@@ -70,10 +70,10 @@ Spacing uses Tailwind's standard utilities. Paragraph margins belong to content 
 
 See [design tokens and typography](styles/README.md).
 
-Font binaries are generated locally and Git-ignored; licenses and provenance remain tracked:
+`public/fonts/` is entirely generated and Git-ignored. Licenses and provenance remain tracked under `licenses/fonts/`; generation copies the required OFL notices alongside the public binaries:
 
-- [Work Sans](public/fonts/work-sans/README.md)
-- [Onest logo subset](public/fonts/onest/README.md)
+- [Work Sans](licenses/fonts/work-sans/README.md)
+- [Onest logo subset](licenses/fonts/onest/README.md)
 
 ```sh
 pnpm fonts:generate
