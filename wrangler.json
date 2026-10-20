@@ -3,6 +3,7 @@
   "name": "benpreiss-com",
   "compatibility_date": "2026-10-20",
   "workers_dev": true,
+  "preview_urls": true,
   "assets": {
     "directory": "./dist",
     "html_handling": "drop-trailing-slash",

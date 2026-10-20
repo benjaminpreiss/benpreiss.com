@@ -34,16 +34,16 @@ Use **Workers & Pages → Create application → GitHub**, select the repository
 and set the Worker name to **benpreiss-com**. For an existing Worker, use
 **Settings → Builds → Connect**. Do not attach a custom domain or change DNS.
 
-| Setting                                | Value                                                                      |
-| -------------------------------------- | -------------------------------------------------------------------------- |
-| Repository                             | `benjaminpreiss/benpreiss.com`                                             |
-| Worker name                            | `benpreiss-com`                                                            |
-| Root directory                         | Repository root (`/`), not the local scratch/worktree path                 |
-| Production branch                      | `main`                                                                     |
-| Build command                          | `pnpm install --frozen-lockfile --strict-peer-dependencies && pnpm build`  |
-| Deploy command, **preview phase only** | `pnpm exec wrangler preview --name staging --tag "$WORKERS_CI_COMMIT_SHA"` |
-| Preview command                        | `pnpm exec wrangler preview --tag "$WORKERS_CI_COMMIT_SHA"`                |
-| Enable Preview Builds                  | Enabled                                                                    |
+| Setting                                | Value                                                                                  |
+| -------------------------------------- | -------------------------------------------------------------------------------------- |
+| Repository                             | `benjaminpreiss/benpreiss.com`                                                         |
+| Worker name                            | `benpreiss-com`                                                                        |
+| Root directory                         | Repository root (`/`), not the local scratch/worktree path                             |
+| Production branch                      | `main`                                                                                 |
+| Build command                          | `pnpm install --frozen-lockfile --strict-peer-dependencies --prod=false && pnpm build` |
+| Deploy command, **preview phase only** | `pnpm exec wrangler preview --name staging --tag "$WORKERS_CI_COMMIT_SHA"`             |
+| Preview command                        | `pnpm exec wrangler preview --tag "$WORKERS_CI_COMMIT_SHA"`                            |
+| Enable Preview Builds                  | Enabled                                                                                |
 
 The dashboard calls `main` the production branch, but the deploy command above
 publishes only the named **staging Preview**, not an active production deployment.
@@ -77,6 +77,21 @@ actually requires; no custom-domain/DNS access is needed for this preview setup.
 **Save and Deploy publishes a public Preview.** Review the commands and settings
 above before clicking it. Worker Previews currently require Wrangler >=4.135.0
 and are labelled open beta by the CLI.
+
+## Enable the Preview hostname
+
+In the Cloudflare dashboard, open **Workers & Pages → benpreiss-com → Domains**.
+Under **Worker URL**, enable **Preview**. Production and Preview URLs are separate;
+leave production/custom-domain routing unchanged.
+
+`preview_urls: true` in `wrangler.json` records the intended setting, but a
+`wrangler preview` upload alone does not apply the Worker-level hostname setting.
+For initial preview-only setup, enable it in the dashboard rather than running
+`wrangler deploy`, which would also publish an active production version. If a
+successful upload reports **no active URLs**, check this toggle first, then open
+or retry the staging Preview.
+
+See [Cloudflare's Preview URL settings](https://developers.cloudflare.com/workers/previews/custom-domains/#enable-workersdev-preview-urls).
 
 ## Verify the first deployment
 
