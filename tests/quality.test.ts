@@ -13,7 +13,7 @@ import { resolve, join } from "node:path";
 import { tmpdir } from "node:os";
 import { spawnSync } from "node:child_process";
 
-test("formatter discovers source files without the optional ignored docs directory", () => {
+test("formatter discovers source files and optional docs, CI and license directories", () => {
   const dir = mkdtempSync(join(tmpdir(), "portfolio-format-checkout-"));
   try {
     for (const file of [
@@ -35,12 +35,14 @@ test("formatter discovers source files without the optional ignored docs directo
     result = run("--write");
     assert.equal(result.status, 0, result.stdout + result.stderr);
     assert.equal(run("--check").status, 0);
-    mkdirSync(join(dir, "docs"));
-    writeFileSync(join(dir, "docs/sample.ts"), "export const example={b:2}\n");
-    assert.notEqual(run("--check").status, 0, "Local docs are still checked when present");
-    result = run("--write");
-    assert.equal(result.status, 0, result.stdout + result.stderr);
-    assert.equal(run("--check").status, 0);
+    for (const folder of ["docs", ".github", "licenses"]) {
+      mkdirSync(join(dir, folder));
+      writeFileSync(join(dir, folder, "sample.json"), '{"example":true}\n');
+      assert.notEqual(run("--check").status, 0, `${folder} is checked when present`);
+      result = run("--write");
+      assert.equal(result.status, 0, result.stdout + result.stderr);
+      assert.equal(run("--check").status, 0);
+    }
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }

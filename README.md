@@ -107,6 +107,12 @@ Tests build isolated sites in the OS temporary directory. Synthetic content exer
 
 Husky installs a pre-commit hook in standalone checkouts. It runs `lint-staged`, typechecks and unit/build tests. Installation is skipped in linked Git worktrees to avoid changing shared Git configuration; run these checks manually there.
 
+## Contributing and licensing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the pull-request workflow, automated checks and repository-owner setup. GitHub Actions configuration is included; remote branch protection must be enabled separately. Dependabot proposes weekly updates without automatic merging.
+
+Original application code is available under the [MIT License](LICENSE). Portfolio content, branding, photographs, project media, fonts and third-party assets are excluded from that grant; see [licensing and reuse](LICENSING.md). Required runtime/icon notices ship in `public/THIRD-PARTY-NOTICES.txt`.
+
 ## Build configuration and publishing
 
 | Variable            | Behavior                                                                                                                                 |

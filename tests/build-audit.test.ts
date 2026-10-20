@@ -1,9 +1,24 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { writeFileSync } from "node:fs";
+import { rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { auditBuild } from "../scripts/audit-build.ts";
 import { createFixtureSite } from "./support/site.ts";
+
+test("build audit requires nonempty third-party notices alongside distributed assets", () => {
+  const site = createFixtureSite();
+  try {
+    const output = join(site.dir, "public");
+    const notices = join(output, "THIRD-PARTY-NOTICES.txt");
+    assert.doesNotThrow(() => auditBuild(output));
+    rmSync(notices);
+    assert.throws(() => auditBuild(output), /Missing required third-party notices/);
+    writeFileSync(notices, " \n");
+    assert.throws(() => auditBuild(output), /Missing required third-party notices/);
+  } finally {
+    site.cleanup();
+  }
+});
 
 test("build audit rejects missing local videos instead of deferring them", () => {
   const site = createFixtureSite();

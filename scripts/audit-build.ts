@@ -34,6 +34,9 @@ export function outputRoute(file: string): string {
 // reusable Markdoc components, the footer, Svelte SSR and Astro's bundles.
 export function auditBuild(dir: string, origin = "https://audit.invalid"): void {
   const all = files(dir);
+  const notices = join(dir, "THIRD-PARTY-NOTICES.txt");
+  if (!existsSync(notices) || !statSync(notices).isFile() || !readFileSync(notices, "utf8").trim())
+    throw new Error("Missing required third-party notices in public build output");
   for (const name of [
     "WorkSans-latin.woff2",
     "WorkSans-latin-ext.woff2",

@@ -17,7 +17,7 @@ const files = supplied.length
         "tests",
         "content",
         "styles",
-        ...(existsSync("docs") ? ["docs"] : []),
+        ...["docs", ".github", "licenses"].filter((dir) => existsSync(dir)),
       ].flatMap((dir) =>
         readdirSync(dir, { recursive: true, encoding: "utf8" }).map((file) => `${dir}/${file}`),
       ),
