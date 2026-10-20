@@ -1,0 +1,11 @@
+{
+  "ignorePatterns": [
+    "public/**",
+    "dist/**",
+    ".astro/**",
+    ".test-tmp/**",
+    "pnpm-lock.yaml",
+    "**/*.astro",
+    "**/*.mdoc"
+  ]
+}

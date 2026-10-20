@@ -1,0 +1,36 @@
+---
+import buttons from "../../content/technology-buttons.json";
+interface Props {
+  names: (keyof typeof buttons)[];
+}
+const { names } = Astro.props;
+const widths: Record<string, string> = {
+  small: "w-9",
+  medium: "w-20",
+  wide: "w-28",
+};
+---
+
+<div class="flex flex-wrap mt-6 justify-start after:flex-auto -mx-3 gap-y-2">
+  {names.map((name) => {
+    const button = buttons[name];
+    return (
+      <a
+        class="mx-1.5 block border border-transparent rounded-lg hover:bg-ben-black/5 focus-visible:border-ben-black outline outline-transparent focus-visible:outline-ben-black/20 focus-visible:outline-[3px] active:scale-90 transition-transform active:bg-ben-black/10"
+        href={button.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={button.label}
+      >
+        <div class={`${widths[button.size]} h-9 p-1.5`}>
+          <img
+            class="w-full h-full object-contain"
+            src={button.icon}
+            alt=""
+            loading="lazy"
+          />
+        </div>
+      </a>
+    );
+  })}
+</div>

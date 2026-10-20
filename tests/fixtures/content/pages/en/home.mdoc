@@ -1,0 +1,82 @@
+---
+permalink: /hello
+locale: en
+translationKey: home
+description: English homepage fixture.
+title: Short rendering fixture
+---
+{% IntroScreen %}
+
+{% Intro id="start" %}
+
+{% ProfilePicture src="/profile-pic.jpg" alt="Fixture portrait" width=477 height=595 /%}
+
+{% IntroColumn %}
+
+{% IntroText %}
+
+**Strong fixture text**
+
+A deliberate line break\
+with *Emphasized fixture text* and a [Fixture link](https://example.org/).
+
+{% /IntroText %}
+
+{% SocialLinks %}
+{% SocialLink name="Fixture social profile" href="https://example.org/social" icon="/github-black.svg" /%}
+{% /SocialLinks %}
+
+{% /IntroColumn %}
+
+{% /Intro %}
+
+{% ProjectIntro %}
+scroll down to see a\
+*collection* of my **work**
+{% /ProjectIntro %}
+
+{% /IntroScreen %}
+
+{% Projects id="work" %}
+
+{% Project title="Fixture project" href="https://example.org/" linkText="Open project" color="#869B86"
+mobile={"width":632,"height":1130,"poster":"/posters/coordinet-mobile.jpg","webm":"/fixture-mobile.webm","mp4":"/fixture-mobile.mp4"}
+desktop={"width":1200,"height":548,"poster":"/posters/coordinet-desktop.jpg","webm":"/fixture-desktop.webm","mp4":"/fixture-desktop.mp4"} locale="en" %}
+
+An *example project* with a [fixture link](https://example.org/details).
+
+A **second paragraph** for spacing checks.
+
+{% TechnologyButtons names=["figma", "nextjs"] /%}
+
+{% /Project %}
+
+{% /Projects %}
+
+{% Contact id="contact" title="get in touch" %}
+
+{% ContactIntro %}
+
+Let’s have a chat! You can call me or email [hello@example.org](mailto:hello@example.org). Messaging is coming soon.
+
+{% /ContactIntro %}
+
+{% ContactPhone title="Phone" phone="+12025550123" phoneLabel="+1 202 555 0123"
+copy="Copy phone number" copied="Phone number copied"
+copyFailed="Could not copy. Please select and copy the phone number, or tap it to call." /%}
+
+{% ContactForm id="contact-form" title="E-Mail" unavailable="Message delivery is not available yet. Please call me instead." %}
+{% ContactInput id="contact-name" name="name" label="Name" /%}
+{% ContactInput id="contact-email" name="email" type="email" label="E-Mail" /%}
+{% ContactInput id="contact-message" name="message" type="textarea" label="Your Message" /%}
+
+{% ContactFootnote %}
+This is not a newsletter sign up form.
+
+[privacy policy](/en/privacy)
+{% /ContactFootnote %}
+
+{% ContactButton unavailable="Coming soon" /%}
+{% /ContactForm %}
+
+{% /Contact %}

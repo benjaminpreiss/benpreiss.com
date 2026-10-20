@@ -1,0 +1,18 @@
+---
+interface Props {
+  href: string;
+  title?: string;
+}
+const { href, title } = Astro.props;
+const external = /^https?:\/\//.test(href);
+---
+
+<a
+  {href}
+  {title}
+  target={external ? "_blank" : undefined}
+  rel={external ? "noopener noreferrer" : undefined}
+  class="underline decoration-1 underline-offset-1 p-0.5 -m-[3px] border border-transparent hover:no-underline hover:border-b-current hover:bg-[rgb(var(--text-link-rgb,33_33_33)/0.05)] focus-visible:bg-[rgb(var(--text-link-rgb,33_33_33)/0.05)] active:bg-[rgb(var(--text-link-rgb,33_33_33)/0.1)] transition-transform outline-none focus-visible:before:content-[''] focus-visible:before:p-0.5 focus-visible:before:-mx-[3px] focus-visible:before:border focus-visible:before:border-current focus-visible:before:border-r-transparent focus-visible:after:content-[''] focus-visible:after:p-0.5 focus-visible:after:-mx-[3px] focus-visible:after:border focus-visible:after:border-current focus-visible:after:border-l-transparent"
+>
+  <slot />
+</a>

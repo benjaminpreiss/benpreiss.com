@@ -1,0 +1,13 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+const { src, alt, width, height } = Astro.props;
+---
+
+<div class="w-full max-w-sm md:max-w-xs px-14">
+  <img {src} {alt} {width} {height} fetchpriority="high" />
+</div>

@@ -1,0 +1,11 @@
+---
+interface Props {
+  id: string;
+  level: number;
+  title: string;
+}
+const { id, level, title } = Astro.props;
+const Heading = `h${level}` as "h1" | "h2" | "h3";
+---
+
+<Heading {id}>{title}</Heading>

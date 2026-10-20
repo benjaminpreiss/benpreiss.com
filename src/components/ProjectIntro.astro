@@ -1,0 +1,13 @@
+---
+interface Props {
+  id?: string;
+}
+const { id } = Astro.props;
+---
+
+<div {id} class="flex w-full shrink-0 flex-col items-center space-y-6 py-6">
+  <div class="font-fgt text-lg text-center leading-normal [&_strong]:font-fg [&_strong]:font-semibold [&_em]:font-fg [&_em]:font-[450] [&_em]:italic">
+    <slot />
+  </div>
+  <img src="/thin-long-arrow-down.svg" width="12" height="24" alt="" />
+</div>

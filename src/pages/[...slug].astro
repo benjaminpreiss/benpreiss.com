@@ -1,0 +1,118 @@
+---
+import { getCollection, render } from "astro:content";
+import { validatePages } from "../lib/pages";
+import {
+  navigationLinks,
+  sectionIds,
+  translationLinks,
+  validateNavigationHref,
+} from "../lib/navigation";
+import Navigation from "../components/Navigation.svelte";
+import Footer from "../components/Footer.astro";
+import { canonicalUrl } from "../lib/seo";
+import "../../styles/globals.css";
+
+export async function getStaticPaths() {
+  const pages = validatePages(await getCollection("pages")).map((page) => ({
+    ...page,
+    sectionIds: sectionIds(page.body ?? ""),
+  }));
+  const navigations = await getCollection("navigation");
+  const footers = await getCollection("footer");
+  return pages.map((page) => {
+    const matches = navigations.filter(
+      (entry) => entry.data.locale === page.data.locale,
+    );
+    if (matches.length !== 1)
+      throw new Error(
+        `Expected one navigation document for locale ${page.data.locale}`,
+      );
+    const navigation = matches[0]!;
+    const localizedFooters = footers.filter(
+      (entry) => entry.data.locale === page.data.locale,
+    );
+    if (localizedFooters.length !== 1)
+      throw new Error(
+        `Expected one footer document for locale ${page.data.locale}`,
+      );
+    const footer = localizedFooters[0]!;
+    validateNavigationHref(
+      navigation.data.brandHref,
+      page.data.permalink,
+      pages,
+    );
+    return {
+      params: {
+        slug:
+          page.data.permalink === "/"
+            ? undefined
+            : page.data.permalink.slice(1),
+      },
+      props: {
+        page,
+        footer,
+        alternates: pages
+          .filter(
+            (entry) => entry.data.translationKey === page.data.translationKey,
+          )
+          .map((entry) => ({
+            locale: entry.data.locale,
+            permalink: entry.data.permalink,
+          })),
+        navigation: navigation.data,
+        links: navigationLinks(
+          navigation.body ?? "",
+          page.data.permalink,
+          pages,
+        ),
+        translations: translationLinks(page.data, pages, page.sectionIds[0]),
+      },
+    };
+  });
+}
+const { page, footer, alternates, navigation, links, translations } =
+  Astro.props;
+const { Content } = await render(page);
+const { Content: FooterContent } = await render(footer);
+const canonical = canonicalUrl(page.data.permalink);
+---
+
+<!doctype html>
+<html
+  lang={page.data.locale}
+  class="font-fgt [font-synthesis:none] text-ben-black [-webkit-tap-highlight-color:transparent]"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{page.data.title}</title>
+    <meta name="description" content={page.data.description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    {canonical &&
+      alternates.map((entry) => (
+        <link
+          rel="alternate"
+          hreflang={entry.locale}
+          href={canonicalUrl(entry.permalink)}
+        />
+      ))}
+  </head>
+  <body class="text-base font-[350] [&_strong]:font-semibold [&_em]:font-[450] [&_em]:italic">
+    <Navigation
+      client:load
+      locale={page.data.locale}
+      brand={navigation.brand}
+      brandHref={navigation.brandHref}
+      labels={navigation.labels}
+      links={links}
+      translations={translations}
+    />
+    <main>
+      <Content />
+    </main>
+    <Footer>
+      <FooterContent />
+    </Footer>
+  </body>
+</html>

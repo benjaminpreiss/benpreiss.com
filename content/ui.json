@@ -1,0 +1,22 @@
+{
+  "de": {
+    "video": {
+      "play": "Video abspielen",
+      "pause": "Video pausieren",
+      "blocked": "Automatische Wiedergabe nicht möglich. Bitte manuell starten.",
+      "failed": "Video nicht verfügbar. Die Projektvorschau bleibt sichtbar.",
+      "open": "Video öffnen",
+      "devices": { "mobile": "Mobil", "desktop": "Desktop" }
+    }
+  },
+  "en": {
+    "video": {
+      "play": "Play video",
+      "pause": "Pause video",
+      "blocked": "Autoplay unavailable. Please start playback manually.",
+      "failed": "Video unavailable. The project preview remains visible.",
+      "open": "Open video",
+      "devices": { "mobile": "mobile", "desktop": "desktop" }
+    }
+  }
+}

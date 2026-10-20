@@ -1,0 +1,47 @@
+---
+import ProjectVideo from "./ProjectVideo.svelte";
+import ProseLink from "./ProseLink.astro";
+import type { ProjectRecording } from "../lib/project-media";
+interface Props {
+  id?: string;
+  title: string;
+  href: string;
+  linkText: string;
+  color: string;
+  mobile: ProjectRecording;
+  desktop: ProjectRecording;
+  locale: "de" | "en";
+}
+const { id, title, href, linkText, color, mobile, desktop, locale } =
+  Astro.props;
+const recordings = { mobile, desktop };
+---
+
+<article {id}>
+  <div class="w-full px-4 max-w-sm mx-auto flex flex-col md:flex-row md:justify-center md:max-w-full">
+    <div class="md:w-52 md:mr-20 md:text-right font-fgt text-lg font-[350]">
+      <h2 class="font-fg font-semibold text-2xl leading-none">{title}</h2>
+      <ProseLink href={href}>{linkText}</ProseLink>
+    </div>
+    <div class="md:max-w-sm font-fgt text-lg font-[350] leading-normal [&_strong]:font-semibold [&_p]:mt-3 [&_p:first-of-type]:mt-6 md:[&_p:first-of-type]:mt-0 [&_a]:font-fg [&_a]:font-semibold [&_a]:text-ben-black [&_em]:font-fg [&_em]:font-[450] [&_em]:italic">
+      <slot />
+    </div>
+  </div>
+  <div
+    class="mt-8 w-full py-14"
+    style={{ backgroundColor: color }}
+    data-project-color={color}
+  >
+    <div class="flex items-center w-full max-w-sm mx-auto md:max-w-screen-xl">
+      {(["mobile", "desktop"] as const).map((device) => (
+        <ProjectVideo
+          client:visible
+          {title}
+          {locale}
+          recording={recordings[device]}
+          {device}
+        />
+      ))}
+    </div>
+  </div>
+</article>

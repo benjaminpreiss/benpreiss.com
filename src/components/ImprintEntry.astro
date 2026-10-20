@@ -1,0 +1,11 @@
+---
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+
+<dt>{title}</dt>
+<dd class="font-fgt font-[350] text-left space-y-1">
+  <slot />
+</dd>

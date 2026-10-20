@@ -1,0 +1,23 @@
+---
+interface Props {
+  id: string;
+  name: "name" | "email" | "message";
+  label: string;
+  type?: "text" | "email" | "textarea";
+  placeholder?: string;
+}
+const { id, name, label, type = "text", placeholder = label } = Astro.props;
+const inputClasses =
+  "disabled:opacity-100 disabled:[-webkit-text-fill-color:currentColor] bg-ben-gray-2 font-fgt text-lg leading-tight placeholder:opacity-60 py-2.5 px-5 mt-4 block w-full border-[1px] border-transparent focus-visible:outline focus-visible:outline-[3px] focus-visible:border-ben-black focus-visible:outline-ben-black/20 text-ben-black placeholder:text-ben-black";
+---
+
+<label for={id} class="sr-only">
+  {label}
+</label>
+{type === "textarea" ? (
+  <textarea {id} {name} {placeholder} disabled class={`${inputClasses} h-40`} />
+) : (
+  <input {id} {name} {type} {placeholder} disabled class={inputClasses} />
+)}
+<!-- Preserve the existing field spacing without dormant validation UI. -->
+<div aria-hidden="true" class="w-full pt-1 -mb-1"></div>

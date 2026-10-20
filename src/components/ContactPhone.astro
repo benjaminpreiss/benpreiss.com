@@ -1,0 +1,15 @@
+---
+import PhoneContact from "./PhoneContact.svelte";
+interface Props {
+  title: string;
+  phone: string;
+  phoneLabel: string;
+  copy: string;
+  copied: string;
+  copyFailed: string;
+}
+const { title, ...phone } = Astro.props;
+---
+
+<h3 class="font-fg font-semibold text-xl leading-none mt-10">{title}</h3>
+<PhoneContact client:load {...phone} />

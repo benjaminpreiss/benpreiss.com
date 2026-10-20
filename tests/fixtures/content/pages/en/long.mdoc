@@ -1,0 +1,41 @@
+---
+permalink: /long-english
+locale: en
+translationKey: long-intro
+description: English long introduction fixture.
+title: Longer introduction rendering fixture
+---
+{% IntroScreen %}
+
+{% Intro id="start" %}
+
+{% ProfilePicture src="/profile-pic.jpg" alt="Fixture portrait" width=477 height=595 /%}
+
+{% IntroColumn %}
+
+{% IntroText %}
+
+**A longer fictional introduction for layout testing**
+
+This deliberately verbose paragraph exercises natural wrapping rather than depending on the length of somebody's name or the current wording of their portfolio. It describes an imaginary designer interested in accessible interfaces, collaborative work and thoughtful documentation.
+
+*Another paragraph tests emphasis and vertical spacing.* Editors should be able to add sentences, remove sentences and translate ideas without having to rewrite the test suite. The layout must remain readable with a different amount of text.
+
+A final paragraph includes a [sample link](https://example.org/) and enough additional words to make this fixture substantially longer than the short introduction. It is test material only, never published portfolio content.
+
+{% /IntroText %}
+
+{% SocialLinks %}
+{% SocialLink name="Fixture social profile" href="https://example.org/social" icon="/github-black.svg" /%}
+{% /SocialLinks %}
+
+{% /IntroColumn %}
+
+{% /Intro %}
+
+{% ProjectIntro %}
+scroll down to see a\
+*collection* of my **work**
+{% /ProjectIntro %}
+
+{% /IntroScreen %}

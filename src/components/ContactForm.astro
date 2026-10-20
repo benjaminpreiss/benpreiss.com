@@ -1,0 +1,25 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  unavailable: string;
+}
+const { id, title, unavailable } = Astro.props;
+---
+
+<h3 id={`${id}-title`} class="font-fg font-semibold text-xl leading-none mt-10">
+  {title}
+</h3>
+<!-- Intentionally not a native form: no submit()/requestSubmit() mechanism,
+     even before hydration. The fieldset also disables all authored children. -->
+<fieldset
+  {id}
+  disabled
+  aria-labelledby={`${id}-title`}
+  aria-describedby={`${id}-unavailable`}
+>
+  <p id={`${id}-unavailable`} class="sr-only">
+    {unavailable}
+  </p>
+  <slot />
+</fieldset>

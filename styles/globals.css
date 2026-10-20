@@ -2,109 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Generated from pinned Fontsource packages; see pnpm fonts:generate.
+   Licenses and provenance: public/fonts/{work-sans,onest}. */
 @layer base {
-    @font-face {
-        font-family: 'Founders Grotesk';
-        src: url('/FoundersGrotesk-Medium.woff2') format('woff2'),
-            url('/FoundersGrotesk-Medium.woff') format('woff');
-        font-weight: 500;
-        font-style: normal;
-        font-display: swap;
-    }
-
-    @font-face {
-        font-family: 'Founders Grotesk';
-        src: url('/FoundersGrotesk-RegularItalic.woff2') format('woff2'),
-            url('/FoundersGrotesk-RegularItalic.woff') format('woff');
-        font-weight: normal;
-        font-style: italic;
-        font-display: swap;
-    }
-
-    @font-face {
-        font-family: 'Founders Grotesk Text';
-        src: url('/FoundersGroteskText-Light.woff2') format('woff2'),
-            url('/FoundersGroteskText-Light.woff') format('woff');
-        font-weight: 300;
-        font-style: normal;
-        font-display: swap;
-    }
-
-    html {
-        -webkit-tap-highlight-color: transparent;
-        @apply text-ben-black;
-    }
-
-    #__next {
-        @apply relative;
-    }
-
-    .cms-intro-section {
-        @apply mt-8 font-fgt font-light text-lg w-full max-w-sm px-10 text-center md:text-left leading-tight;
-        p {
-            @apply mt-3 first:mt-0;
-        }
-        strong {
-            @apply font-fg font-medium;
-        }
-        em {
-            @apply font-fg font-normal italic;
-        }
-    }
-
-    .cms-project-intro-section {
-        @apply font-fgt text-lg text-center leading-tight;
-        strong {
-            @apply font-fg font-medium;
-        }
-        em {
-            @apply font-fg font-normal italic;
-        }
-    }
-
-    .cms-project {
-        @apply font-fgt text-lg leading-tight;
-        p {
-            @apply mt-3 first-of-type:mt-6 md:first-of-type:mt-0;
-        }
-        a {
-            @apply font-fg text-ben-black;
-        }
-        em {
-            @apply font-fg font-normal italic;
-        }
-    }
-    .cms-privacy-page {
-        @apply mx-auto p-4 max-w-sm text-center mt-16;
-
-        h1 { 
-            @apply font-fg text-2xl font-medium text-left ml-2 -mb-12;
-        }
-        h2 {
-            @apply font-fg font-medium text-lg text-left ml-2 mt-20;
-        }
-        h3 {
-            @apply font-fg font-medium text-sm text-left ml-2 mt-2;
-        }
-
-        p {
-            @apply text-left font-fgt text-sm mt-2 mb-6;
-        }
-
-        ul {
-            @apply m-0 p-0 table mt-4 font-fgt text-sm text-left mb-6;  
-        }
-
-        li {
-            @apply list-none table-row  before:table-cell before:text-right before:pr-2 before:pl-1 before:content-['•'] ;   
-        } 
-        div {
-            @apply text-left font-fg font-medium text-sm pl-4 border-l-[1px] border-ben-black
-        }
-    }
-    .video-container {
-        video {
-            @apply scale-[1.01];
-        }
-    }
+  @font-face {
+    font-family: "Onest Logo";
+    src: url("/fonts/onest/benpreiss-700.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    /* Unique letters in benpreiss: b e i n p r s. The file is physically subset. */
+    unicode-range: U+0062, U+0065, U+0069, U+006E, U+0070, U+0072-0073;
+  }
+  @font-face {
+    font-family: "Work Sans";
+    src: url("/fonts/work-sans/WorkSans-latin-ext.woff2") format("woff2");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+    unicode-range:
+      U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+      U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+      U+A720-A7FF;
+  }
+  @font-face {
+    font-family: "Work Sans";
+    src: url("/fonts/work-sans/WorkSans-latin.woff2") format("woff2");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+    unicode-range:
+      U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+      U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: "Work Sans";
+    src: url("/fonts/work-sans/WorkSans-Italic-latin-ext.woff2") format("woff2");
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+    unicode-range:
+      U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+      U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+      U+A720-A7FF;
+  }
+  @font-face {
+    font-family: "Work Sans";
+    src: url("/fonts/work-sans/WorkSans-Italic-latin.woff2") format("woff2");
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+    unicode-range:
+      U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+      U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
 }

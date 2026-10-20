@@ -1,0 +1,82 @@
+---
+permalink: /
+locale: de
+translationKey: home
+description: Deutsche Startseitenprobe.
+title: Kurze Darstellungsprobe
+---
+{% IntroScreen %}
+
+{% Intro id="start" %}
+
+{% ProfilePicture src="/profile-pic.jpg" alt="Beispielporträt" width=477 height=595 /%}
+
+{% IntroColumn %}
+
+{% IntroText %}
+
+**Kräftiger Beispieltext**
+
+Ein bewusster Zeilenumbruch\
+mit *betontem Beispieltext* und einem [Beispiellink](https://example.org/).
+
+{% /IntroText %}
+
+{% SocialLinks %}
+{% SocialLink name="Beispielprofil" href="https://example.org/social" icon="/github-black.svg" /%}
+{% /SocialLinks %}
+
+{% /IntroColumn %}
+
+{% /Intro %}
+
+{% ProjectIntro %}
+scrolle nach unten für eine\
+*Auswahl* meiner **Arbeiten**
+{% /ProjectIntro %}
+
+{% /IntroScreen %}
+
+{% Projects id="work" %}
+
+{% Project title="Beispielprojekt" href="https://example.org/" linkText="Projekt öffnen" color="#869B86"
+mobile={"width":632,"height":1130,"poster":"/posters/coordinet-mobile.jpg","webm":"/fixture-mobile.webm","mp4":"/fixture-mobile.mp4"}
+desktop={"width":1200,"height":548,"poster":"/posters/coordinet-desktop.jpg","webm":"/fixture-desktop.webm","mp4":"/fixture-desktop.mp4"} locale="de" %}
+
+Ein *Beispielprojekt* mit einem [Beispiellink](https://example.org/details).
+
+Ein **zweiter Absatz** für die Abstandsprüfung.
+
+{% TechnologyButtons names=["figma", "nextjs"] /%}
+
+{% /Project %}
+
+{% /Projects %}
+
+{% Contact id="contact" title="Kontakt" %}
+
+{% ContactIntro %}
+
+Du hast eine spannende Idee oder brauchst Hilfe bei einem Projekt? Ruf mich an oder schreib an [hello@example.org](mailto:hello@example.org)! Nachrichten sind bald verfügbar.
+
+{% /ContactIntro %}
+
+{% ContactPhone title="Telefon" phone="+12025550123" phoneLabel="+1 202 555 0123"
+copy="Telefonnummer kopieren" copied="... Kopiert"
+copyFailed="Kopieren nicht möglich. Bitte markiere und kopiere die Telefonnummer oder tippe darauf, um anzurufen." /%}
+
+{% ContactForm id="contact-form" title="E-Mail" unavailable="Nachrichten können noch nicht versendet werden. Bitte ruf mich stattdessen an." %}
+{% ContactInput id="contact-name" name="name" label="Name" /%}
+{% ContactInput id="contact-email" name="email" type="email" label="E-Mail" /%}
+{% ContactInput id="contact-message" name="message" type="textarea" label="Deine Nachricht" /%}
+
+{% ContactFootnote %}
+Dies ist kein Formular zur Newsletter Registrierung.
+
+[Datenschutzerklärung](/privacy)
+{% /ContactFootnote %}
+
+{% ContactButton unavailable="Bald verfügbar" /%}
+{% /ContactForm %}
+
+{% /Contact %}

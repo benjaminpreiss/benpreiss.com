@@ -1,0 +1,86 @@
+{
+  "figma": {
+    "label": "figma",
+    "href": "https://www.figma.com/",
+    "icon": "/technologies/figma.svg",
+    "size": "small"
+  },
+  "adobe-xd": {
+    "label": "adobe-xd",
+    "href": "https://www.adobe.com/products/xd.html",
+    "icon": "/technologies/adobe-xd.svg",
+    "size": "small"
+  },
+  "adobe-illustrator": {
+    "label": "adobe-illustrator",
+    "href": "https://www.adobe.com/products/illustrator.html",
+    "icon": "/technologies/adobe-illustrator.svg",
+    "size": "small"
+  },
+  "nextjs": {
+    "label": "nextjs",
+    "href": "https://nextjs.org/",
+    "icon": "/technologies/nextjs.svg",
+    "size": "small"
+  },
+  "formik": {
+    "label": "formik",
+    "href": "https://formik.org/",
+    "icon": "/technologies/formik.svg",
+    "size": "medium"
+  },
+  "react-query": {
+    "label": "react-query",
+    "href": "https://react-query.tanstack.com/",
+    "icon": "/technologies/react-query.svg",
+    "size": "wide"
+  },
+  "docker": {
+    "label": "docker",
+    "href": "https://www.docker.com/",
+    "icon": "/technologies/docker.svg",
+    "size": "small"
+  },
+  "tailwindcss": {
+    "label": "tailwindcss",
+    "href": "https://tailwindcss.com/",
+    "icon": "/technologies/tailwindcss.svg",
+    "size": "wide"
+  },
+  "xstate": {
+    "label": "xstate",
+    "href": "https://xstate.js.org/",
+    "icon": "/technologies/xstate.svg",
+    "size": "medium"
+  },
+  "swiperjs": {
+    "label": "swiperjs",
+    "href": "https://swiperjs.com/",
+    "icon": "/technologies/swiper.svg",
+    "size": "small"
+  },
+  "javascript": {
+    "label": "javascript",
+    "href": "https://javascript.info/",
+    "icon": "/technologies/javascript.svg",
+    "size": "small"
+  },
+  "webpack": {
+    "label": "webpack",
+    "href": "https://webpack.js.org/",
+    "icon": "/technologies/webpack.svg",
+    "size": "small"
+  },
+  "paperjs": {
+    "label": "paperjs",
+    "href": "http://paperjs.org/",
+    "icon": "/technologies/paperjs.png",
+    "size": "small"
+  },
+  "sass": {
+    "label": "sass",
+    "href": "https://sass-lang.com/",
+    "icon": "/technologies/sass.svg",
+    "size": "small"
+  }
+}
