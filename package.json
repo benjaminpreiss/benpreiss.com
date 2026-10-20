@@ -1,5 +1,5 @@
 {
-  "name": "ben-preiss-portfolio",
+  "name": "benpreiss.com",
   "private": true,
   "type": "module",
   "scripts": {
@@ -7,6 +7,9 @@
     "fonts:generate": "node scripts/fonts.mjs",
     "fonts:check": "node scripts/fonts.mjs --check",
     "preview": "astro preview --host 127.0.0.1",
+    "cloudflare:check": "pnpm build && wrangler deploy --dry-run --outdir .wrangler/dry-run",
+    "cloudflare:dev": "pnpm build && wrangler dev --local --ip 127.0.0.1 --port 44325",
+    "cloudflare:preview": "pnpm build && wrangler preview",
     "build": "node scripts/fonts.mjs && astro build",
     "typecheck": "astro check && svelte-check --tsconfig ./tsconfig.json && tsc --noEmit",
     "lint": "oxlint --deny-warnings src scripts tests *.ts *.js *.mjs *.cjs && node scripts/markdoc-hygiene.ts --check",
@@ -43,7 +46,8 @@
     "subset-font": "2.9.0",
     "svelte-check": "4.7.7",
     "tailwindcss": "3.4.19",
-    "typescript": "6.0.3"
+    "typescript": "6.0.3",
+    "wrangler": "4.151.2"
   },
   "engines": {
     "node": "24.20.0",
@@ -53,7 +57,8 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild",
-      "sharp"
+      "sharp",
+      "workerd"
     ]
   }
 }

@@ -46,6 +46,8 @@ Project playback tests generate a small synthetic WebM with browser `MediaRecord
 
 CDP runs use one worker: multiple Playwright CDP connections to the same Chromium can overwrite each other's media emulation. Locally launched browsers may run concurrently. Preference-change tests wait for the browser's `matchMedia` event before applying the next preference.
 
+`cloudflare.test.ts` builds real content in an isolated temporary site and uses the pinned Wrangler/workerd local asset server on an ephemeral loopback port. It checks slashless routes, query-preserving redirects, noindex headers, real 404s, font/license availability and static asset limits. It neither authenticates nor deploys, and it stops only its own server. It complements, rather than replaces, actual hosted acceptance.
+
 The browser command builds its own fixture site; no prior normal build is needed. It owns a loopback preview on port 44321, not the user's browser. Existing Node/pnpm and sandbox configuration guidance in the main README still applies.
 
 ## What changes should require test updates?

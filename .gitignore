@@ -2,6 +2,9 @@
 
 /.astro/
 /dist/
+/.wrangler/
+.dev.vars
+.dev.vars.*
 /.pnpm-store/
 /.npm-cache/
 /.test-tmp/

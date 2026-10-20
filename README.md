@@ -1,4 +1,4 @@
-# Ben Preiss — portfolio
+# benpreiss.com
 
 A bilingual portfolio for Benjamin Preiss, freelance web developer and product designer. Built with **Astro**, **Markdoc**, **Svelte**, **Tailwind CSS** and **TypeScript**.
 
@@ -122,6 +122,8 @@ Original application code is available under the [MIT License](LICENSE). Portfol
 
 Without an origin, local builds omit absolute metadata and warn rather than guessing a domain. Setting these variables does not configure hosting or enable search indexing.
 
-**The site is not yet cleared for public deployment.** Pages currently emit `noindex`, and no deployment command or hosting adapter is configured. Asset permissions are confirmed by the owner. Deployment still requires legal/hosting and origin review, final source/output checks, and hosted/device acceptance—including HLS playback and iPhone/iPad Safari.
+Public noindex previews use Cloudflare Workers Static Assets; see [preview setup and recovery](DEPLOYMENT.md). `pnpm cloudflare:check` builds and validates without uploading, while `pnpm cloudflare:dev` runs the local hosting simulator. **`pnpm cloudflare:preview` publishes remotely** and requires Cloudflare authentication. No SSR adapter or application backend is used.
+
+Asset permissions and public previews are owner-approved; production cutover is not. Keep noindex and the production domain disconnected until legal/hosting and origin review, final source/output checks, and hosted/device acceptance—including HLS playback and iPhone/iPad Safari—are complete.
 
 Astro copies files from `public/` regardless of Git ignore rules. Inspect build output before publishing; generated fonts and their OFL notices belong in the output, but local video binaries and private assets do not. The build audit rejects missing referenced assets and prohibited proprietary fonts. A large JavaScript chunk warning also remains to be reviewed.
